@@ -1,0 +1,468 @@
+{% extends 'all/base.html' %}{%load static%}{%block body%}
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<style>
+  .courses h3 {
+    padding-left: 30px;
+  }
+  .disp {
+    padding: 20px 100px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .afr button {
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 200px;
+    color: white;
+    background-color: var(--black);
+    border: none;
+  }
+  .learning h3 {
+    padding: 10px 100px;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .courses {
+    width: 100%;
+  }
+  .disp div {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .disp div img {
+    width: 100%;
+    height: 360px;
+  }
+  .afr p {
+    margin-top: -10px;
+  }
+  .my-learning {
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    background-color: var(--back);
+  }
+  .mcourse {
+    width: 350px !important;
+    height: 100px !important;
+    border: solid 1px black;
+    border-radius: 5px;
+    display: flex;
+  }
+  .mcourse .con {
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .con img {
+    width: 100%;
+    height: 100%;
+  }
+  .mcourse .tx {
+    padding: 30px;
+  }
+  .afr {
+    max-width: 50%;
+    overflow: hidden;
+    position: absolute;
+    margin-top: -320px;
+    margin-left: 50px;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.082);
+    padding: 40px 40px;
+    background-color: white;
+  }
+  @media (max-width: 768px) {
+    .disp {
+      padding: 10px;
+    }
+    .learning h3 {
+      padding: 30px;
+      font-family: "Poppins", sans-serif;
+      font-size: 20px;
+    }
+
+    .disp div img {
+      width: 100%;
+      height: auto;
+    }
+    .afr {
+      position: relative;
+      box-shadow: none;
+      max-width: 100%;
+      margin: 0;
+      padding: 10px;
+    }
+    .my-learning {
+      width: 100%;
+      padding: 10px 30px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      background-color: var(--back);
+    }
+  }
+</style>
+<!--<div class="home_slider_container">
+			
+		
+			<div class="owl-carousel owl-theme home_slider">
+				
+			
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										
+										
+											<button type="submit" class="home_search_button">search</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										
+											<button type="submit" class="home_search_button">search</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" ><h4 style="font-family: Arial, Helvetica, sans-serif ; font-size: 50px;">Africa's No. 1 learning market place for entrepreneurs</h4></div>
+									<div class="home_slider_subtitle"  ></div>
+									<div class="home_slider_form_container">
+										<form action="#" id="home_search_form_3" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+												<select class="dropdown_item_select home_search_input">
+													<option>Category Courses</option>
+													<option>Category</option>
+													<option>Category</option>
+												</select>
+												<select class="dropdown_item_select home_search_input">
+													<option>Select Price Type</option>
+													<option>Price Type</option>
+													<option>Price Type</option>
+												</select>
+											</div>
+											<button type="submit" class="home_search_button">search</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		
+
+		<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+		<div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+	</div>-->
+{%if user.is_authenticated%}
+<section class="disp">
+  <div>
+    <img src="{%static 'images/uemy.jpg'%}" alt="disp" />
+    <div class="afr">
+      <h3>Africa's No. 1 learning market place for entrepreneurs</h3>
+
+      <br />
+      <p>
+        With a growing network of thousands of young entrepreneurs across
+        different African states, we envision a world where every aspiring and
+        enterprising African can transform their life by accessing the world’s
+        best learning experience.
+      </p>
+    </div>
+  </div>
+</section>
+<section class="learning">
+  <br />
+  <h3>
+    Welome back, {{request.user.first_name}}<span style="float: right"
+      >My Learnings</span
+    >
+  </h3>
+
+  <div class="my-learning">
+    {% for orders in order%}
+    <div class="mcourse">
+      <div class="con">
+        <img
+          src="{{orders.course.display_image.url}}"
+          alt="{{orders.course.display_image}}"
+        />
+      </div>
+      <div class="tx">
+        <h4>{{orders.course.title}}</h4>
+        <a href="{%url 'lesson' orders.course.id%}" style="float: right"
+          >Proceed to lesson <i class="fa fa-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</section>
+{%else%}
+<section class="disp">
+  <div>
+    <img src="{%static 'images/uemy.jpg'%}" alt="disp" />
+    <div class="afr">
+      <h3>Africa's No. 1 learning market place for entrepreneurs</h3>
+
+      <br />
+      <p>
+        With a growing network of thousands of young entrepreneurs across
+        different African states, we envision a world where every aspiring and
+        enterprising African can transform their life by accessing the world’s
+        best learning experience.
+      </p>
+      <a href="{%url 'studentlogin' %}"><button>Join Us</button></a>
+    </div>
+  </div>
+</section>
+{%endif%}
+<section class="courses">
+  <div class="nm" style="display: flex; justify-content: flex-start">
+    <h3>Latest Courses</h3>
+  </div>
+  <div class="course-container owl-carousel owl-theme can" id="coucon">
+    {%for course in latest%}
+
+    <a href="{%url 'details' course.id%}">
+      <div
+        class="course-box shadow owl-item red-tooltip"
+        data-toggle="tooltip"
+        data-placement="right"
+        data-delay='{"show":"100", "hide":"1000"}'
+        data-html="true"
+        title="<h4>{{course.title}}</h4>
+      <b>March 2023</b>
+      <p>Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!</p>
+            <ol>
+              <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
+              <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
+              <li>You will master the Python programming language </li>
+            </ol>
+            <div>
+            <form action='/add-to-cart'>
+            <input type='hidden' name='course_id' value='{{course.id}}'' />
+            <button
+             
+            >
+              Add to cart
+            </button>
+          </form> <form action='/add-to-wish'>
+          <input type='hidden' name='course_id' value='{{course.id}}' />
+          <button
+          class='bit'
+            style='
+              width: 40px;
+              height: 40px;
+              outline:none;
+              
+              font-size: 25px;
+              background-color: transparent;
+            '
+          >
+            <i class='fa fa-heart'></i>
+          </button></form></div> "
+      >
+        <div class="bx">
+          <div class="course-image-container">
+            <img
+              src="{{course.display_image.url}}"
+              alt="{{course.display_image}}"
+            />
+          </div>
+          <div class="course-info-container">
+            <h5 style="font-size: 14px">{{course.title}}</h5>
+            <h6>{{course.user.first_name}} {{course.user.last_name}}</h6>
+            <h6 style="font-size: 8px !important">
+              <span
+                class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+              ></span>
+              {{course.average_rating}}
+            </h6>
+            {% if course.discounted_price%}
+            <p style="text-decoration: line-through">
+              <b style="text-decoration: line-through">N</b> {{course.price}}.00
+            </p>
+            <p>
+              <b style="text-decoration: line-through">N</b>
+              {{course.discounted_price}}.00
+            </p>
+            {%else%}
+            <p>
+              <b style="text-decoration: line-through">N</b> {{course.price}}.00
+            </p>
+            {%endif%}
+          </div>
+        </div>
+      </div></a
+    >
+
+    {%endfor%}
+  </div>
+  <br />
+  <div class="nm" style="display: flex; justify-content: flex-start">
+    <h3>Popular Courses</h3>
+  </div>
+  <div class="course-container owl-carousel owl-theme can" id="coucon">
+    {%for course in popular%}
+
+    <a href="{%url 'details' course.id%}">
+      <div
+        class="course-box shadow owl-item red-tooltip"
+        data-toggle="tooltip"
+        data-placement="right"
+        data-html="true"
+         title="<h4>{{course.title}}</h4>
+      <b>March 2023</b>
+      <p>Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!</p>
+            <ol>
+              <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
+              <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
+              <li>You will master the Python programming language </li>
+            </ol>
+            <div>
+            <form action='/add-to-cart'>
+            <input type='hidden' name='course_id' value='{{course.id}}'' />
+            <button
+             
+            >
+              Add to cart
+            </button>
+          </form> <form action='/add-to-wish'>
+          <input type='hidden' name='course_id' value='{{course.id}}' />
+          <button
+          class='bit'
+            style='
+              width: 40px;
+              height: 40px;
+              outline:none;
+              
+              font-size: 25px;
+              background-color: transparent;
+            '
+          >
+            <i class='fa fa-heart'></i>
+          </button></form></div> "
+      >
+        <div class="bx">
+          <div class="course-image-container">
+            <img
+              src="{{course.display_image.url}}"
+              alt="{{course.display_image}}"
+            />
+          </div>
+          <div class="course-info-container">
+            <h5 style="font-size: 14px">{{course.title}}</h5>
+            <h6>{{course.user.first_name}} {{course.user.last_name}}</h6>
+            <h6 style="font-size: 8px !important">
+              <span
+                class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+              ></span>
+              {{course.average_rating}}
+            </h6>
+
+            {% if course.discounted_price%}
+
+            <p>
+              <b style="text-decoration: line-through">N {{course.price}}.00</b>
+              {{course.discounted_price}}.00
+            </p>
+
+            {%else%}
+            <p>
+              <b style="text-decoration: line-through">N</b> {{course.price}}.00
+            </p>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+
+      {%endfor%}
+    </a>
+  </div>
+</section>
+
+<section class="cats">
+  <h3>Categories:</h3>
+
+  <div class="catt">
+    {%for cats in cat%}
+    <a href="{%url 'catg' cats.slug %}">
+      <div class="cat">{{cats.title}}</div>
+    </a>
+    {%endfor%}
+  </div>
+</section>
+
+{%endblock body%}

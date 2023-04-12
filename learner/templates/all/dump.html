@@ -1,0 +1,773 @@
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'styles/bootstrap4/bootstrap.min.css' %}"
+    />
+    <link
+      href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'styles/main_styles.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'styles/responsive.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'all/css/course.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      body {
+        background: rgb(253, 254, 255);
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'all/header.html' %}
+    <div style="margin-top: 110px">{% block body %} {% endblock body %}</div>
+
+    <!----footer-section------>
+    {% include 'all/footer.html' %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+    <script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script></script>
+  </body>
+</html>
+
+
+
+
+
+
+{%load static%}
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    text-align: left;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 0px;
+    z-index: 1;
+    margin-left: -100px;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .logout {
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color: black;
+    border-top: solid 2px grey;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .dropdown-content a{
+    color: black;
+  }
+  .dropdown-content a:hover{
+    color: #ff0062;
+  }
+  .logout:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
+  .min{
+    list-style: none;
+    
+  }
+  .min li{
+    padding: 10px 5px;
+    width: 100%;
+    color: rgb(19, 18, 18) !important;
+  }
+  .min li:hover{
+    background-color: aliceblue;
+  }
+</style>
+<header class="header">
+  <!-- Top Bar -->
+
+  <div class="top_bar animate__animated animate__bounce]">
+    <div class="top_bar_container">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div
+              class="top_bar_content d-flex flex-row align-items-center justify-content-start"
+            >
+              <ul class="top_bar_contact_list">
+                <li><div class="question">Have any questions?</div></li>
+                <li>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <div>234-7063460678</div>
+                </li>
+                <li>
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                  <div>davidexadewole59@gmail.com</div>
+                </li>
+              </ul>
+              {% if user.is_authenticated %}
+              <div></div>
+
+              {%else%}
+              <div class="top_bar_login ml-auto">
+                <div class="login_button">
+                  <a href="{%url 'studentlogin'%}">Register or Login</a>
+                </div>
+              </div>
+              {%endif%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Content -->
+  <div class="header_container">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div
+            class="header_content d-flex flex-row align-items-center justify-content-start"
+          >
+            <div class="logo_container">
+              <a href="#">
+                <div class="logo_text">E-learn<span>ing</span></div>
+              </a>
+            </div>
+            <nav class="main_nav_contaner ml-auto">
+              <ul class="main_nav">
+                <li ><a href="{%url 'home' %}">Home</a></li>
+                
+                <li><a href="{%url 'courses' %}">Courses</a></li>
+               
+                <div class="dropdown">
+                  <li><a>Categories</a></li>
+                  <div class="dropdown-content">
+                    {%for cats in cat%}
+                  <a style="font-weight: bold; padding: 8px;" href="{%url 'catg' cats.slug%}">{{cats.title}}</a>
+                    {%endfor%}
+                  </div>
+                </div>
+               
+              </ul>
+
+              <div class="search_button">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </div>
+
+              <!-- Hamburger -->
+
+              <div class="shopping_cart">
+                 {%if user.is_authenticated%}
+                <div class="dropdown">
+                  <i style="margin-left: 15px" class="fa fa-user-circle"></i>
+                  <div class="dropdown-content">
+                    <img
+                      src="{%static 'images/avi.png'%}"
+                      style="height: 50px; width: 50px; border-radius: 50%"
+                    />
+                    <h4 style="font-family: 'Poppins', sans-serif">
+                      {{request.user.first_name}} {{request.user.last_name}}
+                    </h4>
+                    <h5>{{request.user.email}}</h5>
+
+                    <hr style="width: 100%; border: inset 1px grey" />
+                    {%if user.is_admin%}
+                    <ul
+                      class="min"
+                      style="
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        
+                      "
+                    >
+                      <li "><a href="{%url 'sdashboard'%}">Dashboard</a></li>
+                      <li "><a href="{%url 'sprofile'%}">Profile</a></li>
+                      <li "><a href="{%url 'scourses'%}">My Courses</a></li>
+                      
+                    </ul>
+                    {%else%}
+                    <ul
+                      class="min"
+                      style="
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        
+                      "
+                    >
+                      <li "><a href="{%url 'tutorboard' %}">Dashboard</a></li>
+                      <li "><a href="{%url 'tprofile' %}">Profile</a></li>
+                      <li "><a href="{%url 'tutorcourses' %}">My Courses</a></li>
+                      <li "><a href="{%url 'announcements' %}">Annoucements</a></li>
+                      
+                    </ul>
+                    {%endif%}
+                    <a href="{%url 'logout' %}" style="width: 100%"
+                      ><button class="logout">Log Out</button></a
+                    >
+                  </div>
+                </div>
+                {%endif%}
+              </div>
+
+              <div class="hamburger menu_mm">
+                <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Search Panel -->
+  <div class="header_search_container">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div
+            class="header_search_content d-flex flex-row align-items-center justify-content-end"
+          >
+            <form class="header_search_form" action='{% url 'search' %}'>
+              <input
+                type="search"
+                class="search_input"
+                placeholder="Search"
+                name="search"
+                aria-placeholder="search"
+                required="required"
+              />
+              <button
+                class="header_search_button d-flex flex-column align-items-center justify-content-center"
+              >
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Menu -->
+
+<div
+  class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400"
+>
+  <div class="menu_close_container">
+    <div class="menu_close">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div class="search">
+    <form action="#" class="header_search_form menu_mm">
+      <input
+        type="search"
+        class="search_input menu_mm"
+        placeholder="Search"
+        required="required"
+      />
+      <button
+        class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm"
+      >
+        <i class="fa fa-search menu_mm" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <nav class="menu_nav">
+    <ul class="menu_mm">
+      <li class="menu_mm"><a href="{%url 'home' %}">Home</a></li>
+                
+                <li class="menu_mm"><a href="{%url 'courses' %}">Courses</a></li>
+      <li class="menu_mm"><a href="#">Courses</a></li>
+      <li class="menu_mm"><a href="#">Categories</a></li>
+      {%for cats in cat%}
+                <li class="menu_mm"><a href="{%url 'catg' cats.id%}">{{cats.title}}</a></li>     
+                    {%endfor%}
+    </ul>
+  </nav>
+</div>
+
+
+
+
+
+{%load static%}
+
+<footer class="footer">
+  <div
+    class="footer_background"
+    style="background-image: url(images/footer_background.png)"
+  ></div>
+  <div class="container">
+    <div class="row footer_row">
+      <div class="col">
+        <div class="footer_content">
+          <div class="row">
+            <div class="col-lg-3 footer_col">
+              <!-- Footer About -->
+              <div class="footer_section footer_about">
+                <div class="footer_logo_container">
+                  <a href="#">
+                    <div class="footer_logo_text">E-learn<span>ing</span></div>
+                  </a>
+                </div>
+                <div class="footer_about_text">
+                  <p>
+                    Lorem ipsum dolor sit ametium, consectetur adipiscing elit.
+                  </p>
+                </div>
+                <div class="footer_social">
+                  <ul>
+                    <li>
+                      <a href="#"
+                        ><i class="fa fa-facebook" aria-hidden="true"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="fa fa-google-plus" aria-hidden="true"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="fa fa-instagram" aria-hidden="true"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="fa fa-twitter" aria-hidden="true"></i
+                      ></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 footer_col">
+              <!-- Footer Contact -->
+              <div class="footer_section footer_contact">
+                <div class="footer_title">Contact Us</div>
+                <div class="footer_contact_info">
+                  <ul>
+                    <li>Email: davidexadewole59@gmail.com</li>
+                    <li>Phone: +(234) 7063460678</li>
+                    <li>Akure, Nigeria</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 footer_col">
+              <!-- Footer links -->
+              <div class="footer_section footer_links">
+                <div class="footer_title">All</div>
+                <div class="footer_links_container">
+                  <ul>
+                    <li><a href="{%url 'home'%}">Home</a></li>
+                    <li><a href="{%url 'courses'%}">Courses</a></li>
+                    <li>Categories</li>
+                    {%for cats in cat%}
+                    <li><a href="{%url 'catg' cats.id%}">{{cats.title}}</a></li>
+                    {%endfor%}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-lg-3 footer_col clearfix">
+              
+              <div class="footer_section footer_mobile">
+                <div class="footer_title">Mobile</div>
+                <div class="footer_mobile_content">
+                  <div class="footer_image">
+                    <a href="#"><img src="images/mobile_1.png" alt="" /></a>
+                  </div>
+                  <div class="footer_image">
+                    <a href="#"><img src="images/mobile_2.png" alt="" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row copyright_row">
+      <div class="col">
+        <div
+          class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start"
+        >
+          <div class="cr_text">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>
+            All rights reserved
+          </div>
+          <div class="ml-lg-auto cr_links">
+            <ul class="cr_list">
+              <li><a href="#">Copyright notification</a></li>
+              <li><a href="#">Terms of Use</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+{% extends 'all/base.html' %}{%load static%}{%block body%}
+<style>
+	.courses h3{
+		padding-left: 50px;
+	}
+  .courses{
+    width: 100%;
+   
+  }
+  .cat{
+    background: linear-gradient(to bottom, white 90%,pink 25%,rgb(165, 0, 110) 5%);
+  }
+  .my-learning{
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    gap: 40px;
+   flex-wrap: wrap;
+    background-color: white;
+    
+  }
+  .mcourse{
+    width: 350px !important;
+    height: 150px !important;
+    border: solid;
+    border-radius: 5px;
+    display: flex;
+  }
+  .mcourse .con{
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .con img{
+    width: 100%;
+  height: 100%;
+  }
+  .mcourse .tx{
+    padding: 30px;
+   
+  }
+</style>
+<div class="home_slider_container">
+			
+			<!-- Home Slider -->
+			<div class="owl-carousel owl-theme home_slider">
+				
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										
+										
+											<button type="submit" class="home_search_button">search</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										
+											<button type="submit" class="home_search_button">search</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										<form action="#" id="home_search_form_3" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+												<select class="dropdown_item_select home_search_input">
+													<option>Category Courses</option>
+													<option>Category</option>
+													<option>Category</option>
+												</select>
+												<select class="dropdown_item_select home_search_input">
+													<option>Select Price Type</option>
+													<option>Price Type</option>
+													<option>Price Type</option>
+												</select>
+											</div>
+											<button type="submit" class="home_search_button">search</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Home Slider Nav -->
+
+		<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+		<div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+	</div>
+  {%if user.is_authenticated%}
+  <section class="learning">
+    <br>
+      <center>  <h3>My Learnings</h3></center>
+
+    <div class="my-learning">
+      {% for orders in order%}
+      <div class="mcourse">
+<div class="con">
+  <img
+            src="{{orders.course.display_image.url}}"
+            alt="{{orders.course.display_image}}"
+          />
+</div>
+<div class="tx">
+  <h4>{{orders.course.title}}</h4>
+  <a href="{%url 'lesson' orders.course.id%}" style="float: right;">Proceed to lesson <i class="fa fa-arrow-right"></i></a>
+  {{orders.id}}
+  
+</div>
+      </div>
+      {%endfor%}
+    </div>
+  </section>
+  {%endif%}
+	<section class="courses">
+<center>  <h3>Latest Courses</h3></center>
+  <div class="course-container">
+    
+
+    {%for course in latest%}
+
+    <a href="{%url 'details' course.id%}">
+      <div class="course-box shadow">
+        
+				<div class="bx"><div class="ovlay text-white">
+            <br /><br />
+            <h4 class="text-white">{{course.title}}</h4>
+            <ol>
+              <li>{{course.learning_objective_1}}</li>
+              <li>{{course.learning_objective_2}}</li>
+              <li>{{course.learning_objective_3}}</li>
+            </ol>
+            <button class="view">View Course</button>
+          </div>
+        <div class="course-image-container">
+          <img
+            src="{{course.display_image.url}}"
+            alt="{{course.display_image}}"
+          />
+        </div>
+        <div class="course-info-container">
+          <h4>{{course.title}}</h4>
+          <h6>
+              <span
+                class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+              ></span>
+              {{course.average_rating}}
+            </h6>
+
+          <h6>{{course.learning_objective_1}}</h6>
+          <p>
+            <b style="text-decoration: line-through">N</b> {{course.price}}.00
+          </p>
+        </div></div>
+      </div>
+    </a>
+    {%endfor%}
+  </div>
+	<br>
+	  <center><h3>Popular Courses</h3></center>
+  <div class="course-container">
+    
+
+    {%for course in popular%}
+
+    <a href="{%url 'details' course.id%}">
+      <div class="course-box shadow">
+        <div class="bx"><div class="ovlay text-white">
+            <br /><br />
+            <h4 class="text-white">{{course.title}}</h4>
+            <ol>
+              <li>{{course.learning_objective_1}}</li>
+              <li>{{course.learning_objective_2}}</li>
+              <li>{{course.learning_objective_3}}</li>
+            </ol>
+            <button class="view">View Course</button>
+          </div>
+        <div class="course-image-container">
+          <img
+            src="{{course.display_image.url}}"
+            alt="{{course.display_image}}"
+          />
+        </div>
+        <div class="course-info-container">
+          <h4>{{course.title}}</h4>
+          <h6>
+              <span
+                class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+              ></span>
+              {{course.average_rating}}
+            </h6>
+
+          <h6>{{course.learning_objective_1}}</h6>
+          <p>
+            <b style="text-decoration: line-through">N</b> {{course.price}}.00
+          </p>
+        </div></div>
+      </div>
+    </a>
+    {%endfor%}
+  </div>
+</section>
+<section class="cats">
+	<h3 style="padding-left: 20px;">Categories:</h3>
+	{%for cats in cat%}
+	<a href="{%url 'catg' cats.id %}">
+	<div class=" cat shadow">
+		{{cats.title}}
+	</div>
+	</a>
+	{%endfor%}
+</section>
+{%endblock body%}

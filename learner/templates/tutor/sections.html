@@ -1,0 +1,72 @@
+{% extends 'tutor/base.html' %}{%load static%}{% load widget_tweaks %}
+<style></style>
+
+{%block content%}
+<style>
+  textarea {
+    width: 100%;
+  }
+  select {
+    height: 40px;
+    width: 200px;
+  }
+</style>
+<div class="head text-white bg-dark">
+  <h2>{{course.title}}</h2>
+</div>
+<div class="accordion" id="accordionExample">
+  {%for sections in section%}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#u{{sections.id}}"
+        aria-expanded="true"
+        aria-controls="u{{sections.id}}"
+      >
+        <b style="padding-right: 15px"> Section :</b>
+        {{sections.name}}
+      </button>
+    </h2>
+    <div
+      id="u{{sections.id}}"
+      class="accordion-collapse collapse hide"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <strong>Contents</strong>
+        <b style="float: right"
+          ><a href="{%url 'content' sections.id %}">Edit</a></b
+        >
+      </div>
+
+      {% for contents in content%} <b></b>
+      {%if contents.section.name == sections.name %}
+      <li style="padding-left: 20px">{{contents.lesson}}</li>
+      {%endif%} {%endfor%}
+    </div>
+  </div>
+  {%endfor%}
+</div>
+
+<div class="editp">
+  <div class="container shadow prof">
+    <form method="post">
+      {%csrf_token%}
+      <p style="display: none"><label>Course:</label> {{form.course}}<br /></p>
+      <label>Section {{sectionl2}} Name:</label>
+      {{form.name}}<br />
+
+      {{form.errors}}
+
+      <button style="float: right; width: 100px" class="btn btn-dark">
+        save
+      </button>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+{%endblock content%}

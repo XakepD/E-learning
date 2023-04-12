@@ -1,0 +1,535 @@
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'all/css/style.css' %}" />
+    <link
+      href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      .course-box{
+        background-color: white;
+        border: none;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.281);
+      }
+     
+      
+      .image-cont{
+        background-color: white;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      header{
+        padding: 15px 50px;
+      }
+      body{
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <div class="left">
+          <img src="{% static 'images/eea-logo.png' %}" alt="eea-logo"/>
+        </div>
+        <div class="center">
+          <div class="links">
+            <a href="{%url 'home' %}">Home</a>
+
+            <a href="{%url 'courses' %}">Courses</a>
+            <a href="{%url 'courses' %}">About</a>
+            <div class="dropdown" >
+              <a style="height: 100%;">Categories <i class="fa fa-caret-down"></i> </a>
+              <div class="dropdown-content" ">
+                {%for cats in cat%}
+                <a
+                  style=" padding: 5px 15px"
+                  href="{%url 'catg' cats.slug%}"
+                  >{{cats.title}}
+                </a>
+
+                {%endfor%}
+              </div>
+            </div>
+          </div>
+         
+        </div>
+        <div class="right">
+          <a href="{%url 'wishlist' %}">
+            <i
+              class="fa-regular fa fa-heart"
+              style="transform: scale(1.3)"
+              aria-hidden="true"
+            ></i
+            ><span style="font-size: 15px; margin-left: 2px"
+              ><sup><b>{{w}}</b></sup></span
+            ></a
+          >
+          <a href="{%url 'cart' %}">
+            <i
+              class="fa fa-shopping-cart"
+              style="transform: scale(1.3)"
+              aria-hidden="true"
+            ></i
+            ><span style="font-size: 15px; margin-left: 2px"
+              ><sup><b>{{cartitems}}</b></sup></span
+            ></a
+          >
+          {%if user.is_anonymous%}
+          <a href="{%url 'studentlogin' %}"><button>SignIn</button></a>
+          <a href="{%url 'studentsignup' %}"><button>SignUp</button></a>
+          {%else%}
+          <div class="dropdown">
+            <i class="fa fa-user-circle" style="transform: scale(1.3)"></i>
+            <div class="dropdown-content" style="padding-top: 20px">
+              <div
+                class="circle"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 10px;
+                  padding-left: 12px;
+                "
+              >
+                <div
+                  class="circ"
+                  style="
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    background-color: black;
+                  "
+                ></div>
+                <span
+                  style="
+                    line-height: 4px;
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: rgb(14, 13, 13);
+                  "
+                  ><p>{{request.user.first_name}} {{request.user.last_name}}</p>
+                  <p>{{request.user.email}}</p>
+                </span>
+              </div>
+              <hr style="border: 0.1px inset black; width: 100%" />
+              {%if user.is_admin%}
+              <div class="lnk">
+                <a href="{%url 'sdashboard'%}" style="text-decoration: none"
+                  >Dashboard</a
+                >
+                <a href="{%url 'sprofile'%}">Profile</a>
+                <a href="{%url 'scourses'%}">My Courses</a>
+              </div>
+              {%else%}
+              <div class="lnk" style="text-decoration: none; color: black">
+                <a href="{%url 'tutorboard' %}"
+                  ><i class="fa fa-user-circle"></i> Dashboard</a
+                >
+                <a href="{%url 'tprofile' %}"
+                  ><i class="fa fa-user"></i> Profile</a
+                >
+                <a href="{%url 'tutorcourses' %}">My Courses</a>
+                <a href="{%url 'announcements' %}">Annoucements</a>
+              </div>
+              {%endif%}
+              <hr style="border: 0.5px solid black; width: 100%" />
+              <div class="lnk" style="text-decoration: none; color: black">
+                <a href="{%url 'logout' %}">Logout</a>
+              </div>
+            </div>
+          </div>
+          {%endif%}
+        </div>
+        <div class="bars">
+           <a href="{%url 'wishlist' %}">
+            <i
+              class="fa-regular fa fa-heart"
+              style="transform: scale(1.3)"
+              aria-hidden="true"
+            ></i
+            ><span style="font-size: 15px; margin-left: 2px"
+              ><sup><b>{{w}}</b></sup></span
+            ></a
+          >
+          <a href="{%url 'cart' %}">
+            <i
+              class="fa fa-shopping-cart"
+              style="transform: scale(1.3)"
+              aria-hidden="true"
+            ></i
+            ><span style="font-size: 15px; margin-left: 2px;"
+              ><sup><b>{{cartitems}}</b></sup></span
+            ></a
+          >
+          
+          <i class="fa fa-bars fa-2x" id="op"></i>
+        </div>
+      </div>
+    </header>
+
+<div class="sidebar">
+  <div class="sidenav" >
+    <div class="lnk" style="text-decoration: none; color:white; font-weight: bold; padding-top: 20px;">
+      <i class="fa fa-arrow-left fa-2x" id="csn"></i>
+      {%for cats in cat %}
+                <a href="{%url 'catg' cats.slug %} " style="color: white;"
+                  ><i class="fa fa-graduation-cap"></i> {{cats.title}}</a
+                >
+                {%endfor%}
+              </div>
+            
+  </div>
+   <div class="lnk" style="text-decoration: none; color: black; font-weight: bold;">
+                <a href="{%url 'home' %}"
+                  ><i class="fa fa-home"></i> Home</a
+                >
+                <a href="{%url 'courses' %}"
+                  ><i class="fa fa-user"></i> Courses</a
+                >
+                <a style="cursor: pointer;" id="sn">Categories</a>
+                <a href="{%url 'announcements' %}">Annoucements</a>
+              </div>
+
+
+</div>
+</div>
+
+    <section class="display" id="cl">
+      <div class="home_slider_container">
+			
+			<!-- Home Slider -->
+			<div class="owl-carousel owl-theme home_slider">
+				
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										
+										
+											<button type="submit" class="home_search_button">search</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										
+											<button type="submit" class="home_search_button">search</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title" >The Premium System Education</div>
+									<div class="home_slider_subtitle"  >Learning made easy</div>
+									<div class="home_slider_form_container">
+										<form action="#" id="home_search_form_3" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+												<select class="dropdown_item_select home_search_input">
+													<option>Category Courses</option>
+													<option>Category</option>
+													<option>Category</option>
+												</select>
+												<select class="dropdown_item_select home_search_input">
+													<option>Select Price Type</option>
+													<option>Price Type</option>
+													<option>Price Type</option>
+												</select>
+											</div>
+											<button type="submit" class="home_search_button">search</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Home Slider Nav -->
+
+		<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+		<div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+	</div>
+    </section>
+    <br /><br />
+    <section class="courses">
+      <center><h2>Latest Courses</h2></center>
+      <div class="course-container" id="coucon">
+        {%for course in latest%}
+        <div class="course-box">
+          <div class="image-cont">
+            <img
+              src="{{course.display_image.url}}"
+              alt="{{orders.course.display_image}}"
+            />
+          </div>
+          <div class="info-cont">
+            <div class="overlay">
+              <button>View Course</button>
+            </div>
+            <div class="texts">
+              <h4>{{course.title}}</h4>
+              <p>{{course.user.first_name}} {{course.user.last_name}}</p>
+              <p>
+                {%if course.price <= 0 %}
+                <span> <b>Free</b> </span>
+                {%else%}
+                <span> <b>N</b> {{course.price}}</span>
+                {%endif%}
+                <span style="float: right"
+                  ><span
+                    class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+                  ></span>
+                  {{course.average_rating}}</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+      <center><h2>Popular Courses</h2></center>
+      <div class="course-container" id="coucon">
+        {%for course in popular%}
+        <div class="course-box">
+          <div class="image-cont">
+            <img
+              src="{{course.display_image.url}}"
+              alt="{{orders.course.display_image}}"
+            />
+          </div>
+          <div class="info-cont">
+            <div class="overlay">
+              <button>View Course</button>
+            </div>
+            <div class="texts">
+              <h4>{{course.title}}</h4>
+              <p>{{course.user.first_name}} {{course.user.last_name}}</p>
+              <p>
+                {%if course.price <= 0 %}
+                <span> <b>Free</b> </span>
+                {%else%}
+                <span> <b>N</b> {{course.price}}</span>
+                {%endif%}
+                <span style="float: right"
+                  ><span
+                    class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+                  ></span>
+                  {{course.average_rating}}</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+      <center><h2>All Courses</h2></center>
+      <div class="course-container" id="coucon">
+        {%for course in allc%}
+        <div class="course-box">
+          <div class="image-cont">
+            <img
+              src="{{course.display_image.url}}"
+              alt="{{orders.course.display_image}}"
+            />
+          </div>
+          <div class="info-cont">
+            <div class="overlay">
+              <button>View Course</button>
+            </div>
+            <div class="texts">
+              <h4>{{course.title}}</h4>
+              <p>{{course.user.first_name}} {{course.user.last_name}}</p>
+              <p>
+                {%if course.price <= 0 %}
+                <span> <b>Free</b> </span>
+                {%else%}
+                <span> <b>N</b> {{course.price}}</span>
+                {%endif%}
+                <span style="float: right"
+                  ><span
+                    class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+                  ></span>
+                  <span
+                    class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+                  ></span>
+                  {{course.average_rating}}</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+
+    </section>
+     <br /><br />
+    <section class="cats">
+      <center><h2>All Categories</h2></center>
+      <div class="Categories">
+      {%for cats in cat %}
+      <a href="{%url 'catg' cats.slug %}">
+      <div class="category">
+        <i class="fa fa-graduation-cap fa-2x"></i>
+        <h4>{{cats.title}}</h4>
+      </div>
+      </a>
+      {%endfor%}
+      </div>
+      
+    </section>
+    <br /><br />
+    <footer>
+      <div class="comp">
+
+      </div>
+      <div class="fcontact">
+
+      </div>
+      <div class="fcat"></div>
+      <div class="flast"></div>
+    </footer>
+       <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+    <script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+        $(".sidebar").css("width", "0px")
+        $(".sidenav").css("width", "0px")
+        $(window).resize(function () {
+          $(".sidebar").css("width", "0px")
+           $(".sidenav").css("width", "0px")
+        })
+      })
+      $("#op").click(function () {
+        $(".sidebar").css("display", "block")
+        $(".sidebar").css("width", "250px")
+      })
+      $("#sn").click(function () {
+        $(".sidenav").css("display", "block")
+        $(".sidenav").css("width", "250px")
+      })
+      $("#cl").click(function () {
+        $(".sidebar").css("width", "0px")
+      })
+      $("#csn").click(function () {
+        $(".sidenav").css("width", "0px")
+      })
+     
+      const ele = document.getElementById('coucon');
+ele.scrollTop = 100;
+ele.scrollLeft = 150;
+      let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+const mouseDownHandler = function (e) {
+  alert('xxhhhx')
+    pos = {
+        // The current scroll
+        left: ele.scrollLeft,
+        top: ele.scrollTop,
+        // Get the current mouse position
+        x: e.clientX,
+        y: e.clientY,
+    };
+
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
+};
+      window.sr = ScrollReveal({ reset: true })
+
+      // Custom Settings
+      sr.reveal(".course-box , .category", {
+        duration: 800,
+        distance: "80px",
+        easing: "cubic-bezier(.27,.99,.38,.24)",
+      })
+
+      sr.reveal(".foo-2", {
+        origin: "right",
+        duration: 2000,
+      })
+     
+    </script>
+  </body>
+</html>

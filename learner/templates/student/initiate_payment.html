@@ -1,0 +1,25 @@
+{% extends "all/base.html" %} {% load humanize %} {% block body %}
+<style></style>
+<div class="container">
+  <div
+    class="row d-flex flex-row justify-content-center py-md-5 py-3"
+    style="min-height: 90vh"
+  >
+    <div class="chkt">
+      <div class="carti"></div>
+      <form class="bg-white shadow p-5 form" action="." method="POST">
+        <hr />
+        {% csrf_token %}
+        <p style="display: none">{{ payment_form }}</p>
+        <p>
+          <input
+            type="submit"
+            class="btn btn-dark"
+            value="Proceed to Payment"
+          />
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock body %}

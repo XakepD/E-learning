@@ -1,0 +1,76 @@
+{% extends 'all/base.html' %}{%load static%}{%block body%}
+<br />
+
+<style>
+  .hide {
+    display: none;
+  }
+</style>
+<section class="courses">
+  <div
+    class="nm"
+    style="display: flex; justify-content: flex-start; width: 90%"
+  >
+    <h3>{{catg.title}}</h3>
+  </div>
+  <div class="course-container owl-carousel owl-theme can">
+    {%for course in courses%}
+
+    <div class="course-box shadow owl-item">
+      <div class="bx">
+        <div class="course-image-container">
+          <img
+            src="{{course.display_image.url}}"
+            alt="{{course.display_image}}"
+          />
+        </div>
+
+        <div class="course-info-container">
+          <h5>{{course.title}}</h5>
+          <h6>{{course.user}}</h6>
+          <h6>
+            <span
+              class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+            ></span>
+            {{course.average_rating}}
+          </h6>
+
+          <p>
+            <b style="text-decoration: line-through">N</b> {{course.price}}.00
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {%endfor%}
+  </div>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    data-container="body"
+    data-toggle="popover"
+    data-placement="top"
+    data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+  >
+    Popover on top
+  </button>
+</section>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
+{%endblock body%}

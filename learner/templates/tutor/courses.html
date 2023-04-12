@@ -1,0 +1,242 @@
+{% extends 'tutor/base.html' %}{%load static%}{%block content%}
+<style>
+  .tcourses {
+    width: 100%;
+    padding: 30px 5px;
+  }
+  .allcourses {
+    width: 100%;
+    height: 100%;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .each {
+    display: flex;
+    gap: 20px;
+    background-color: white;
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
+  .cv {
+    height: 110px;
+    overflow: hidden;
+    border: solid 0.1px grey;
+    transition: all 1s ease;
+    background-color: white;
+  }
+
+  .course-image-container {
+    height: 110px;
+    width: 180px;
+  }
+  .course-image-container img {
+    height: inherit;
+    width: inherit;
+  }
+  .course-info-container {
+    padding-top: 20px;
+    max-width: 300px;
+    min-width: 300px;
+  }
+
+  .botn {
+    gap: 30px;
+
+    display: none;
+    width: 100%;
+    line-height: 5px;
+    font-size: 14px;
+    align-items: flex-end;
+    font-weight: bold;
+    padding: 51px 0px 51px 300px;
+    position: absolute;
+
+    background-color: rgba(255, 255, 255, 0.897);
+    backdrop-filter: blur(5px);
+  }
+  .cv:hover .botn {
+    display: flex;
+  }
+  .botn a {
+    text-decoration: none;
+  }
+  h4 {
+    font-weight: bolder;
+  }
+
+  a:hover {
+    box-shadow: 0;
+  }
+  .pg {
+    height: 10px;
+    width: 400px;
+    margin-top: 40px;
+    background: linear-gradient(to right, rgb(29, 93, 148) 70%, white 30%);
+    border: solid 0.1px rgb(240, 236, 236);
+  }
+  @media (max-width: 768px) {
+    .each {
+      gap: 10px;
+      padding: 0px;
+
+      height: 110px;
+      overflow: hidden;
+      transition: all 1s ease;
+    }
+    .allcourses {
+      padding: 15px 5px;
+      gap: 20px;
+    }
+
+    .course-info-container {
+      gap: 0px;
+      padding: 0px 0px;
+      margin-top: -100px;
+      margin-left: 190px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .course-image-container {
+      width: 180px;
+      height: 110px;
+    }
+    .course-image-container img {
+      width: 180px;
+      height: 110px;
+    }
+    .cv {
+      height: 110px;
+    }
+    .botn {
+      justify-content: flex-start;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .each:hover {
+      background: rgb(245, 239, 239);
+    }
+    .pg {
+      width: 250px;
+      display: none;
+    }
+    .botn {
+      gap: 30px;
+
+      display: none;
+      width: 100%;
+      line-height: 5px;
+      font-size: 14px;
+      align-items: flex-end;
+      font-weight: bold;
+      padding: 41px 0px 25px 10px;
+      position: absolute;
+      flex-wrap: wrap;
+
+      background-color: rgba(255, 255, 255, 0.897);
+      backdrop-filter: blur(5px);
+    }
+  }
+  h4 {
+    font-size: 16px !important;
+  }
+  .add {
+    padding: 10px 30px;
+    background-color: #44203d;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+</style>
+<div class="tcourses">
+  <div style="float: right">
+    <a href="{%url 'courseupload'%}  " style="padding-right: 50px"
+      ><button class="add">Add a Course</button></a
+    >
+  </div>
+  <h2 style="font-weight: bolder; padding-left: 50px">My Courses</h2>
+  <div class="allcourses">
+    {%for course in courses%}
+    <div class="cv">
+      <div class="each">
+        <div class="course-image-container">
+          <img
+            src="{{course.display_image.url |default_if_none:'#'}}"
+            alt="{{course.display_image}}"
+          />
+        </div>
+        <div class="course-info-container">
+          <h4>{{course.title}}</h4>
+        </div>
+        <div class="pg"></div>
+        <div class="botn">
+          <a href="{%url 'courseedit' course.id%}">Edit Course</a>
+          <a href="{%url 'details' course.id%}">View Course</a>
+          <a href="{%url 'sections' course.id%}">Edit Course Content</a>
+
+          <a
+            type="button"
+            data-toggle="modal"
+            data-target="#exampleModal{{course.id}}"
+          >
+            Delete course
+          </a>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal{{course.id}}"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel{{course.id}}"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel{{course.id}}">
+                    Are Your Sure You Want To Delete This?
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-footer">
+                  <a
+                    href="/delete/{{course.id}}"
+                    type="button"
+                    class="btn btn-danger"
+                    >Yes, Delete</a
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"
+></script>
+
+{%endblock content%}

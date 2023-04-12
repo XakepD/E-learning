@@ -1,0 +1,217 @@
+{% extends 'all/base.html' %}{%load static%}{%block body%}
+<style>
+  .dets {
+    width: 100%;
+    height: 250px;
+    background-color: black;
+    padding: 30px 110px;
+    color: white !important;
+    display: flex;
+    gap: 100px;
+  }
+  button {
+    cursor: pointer !important;
+  }
+  .oth {
+    padding: 30px 110px;
+  }
+  .obj {
+    padding: 15px;
+    border: 1px solid grey;
+    width: 500px;
+  }
+  .checked {
+    color: orange;
+  }
+  .det1 {
+    width: 50%;
+  }
+  .add {
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.342);
+    background: white;
+    width: 300px;
+    height: 300px;
+    padding-bottom: 20px;
+  }
+  .add img {
+    width: 300px;
+    height: 150px;
+  }
+  .price {
+    padding: 20px;
+  }
+  li {
+    font-size: 12px;
+  }
+  ul {
+    line-height: 20px;
+  }
+  button {
+    cursor: pointer !important;
+  }
+</style>
+<br />
+
+<section class="course-details">
+  <!-- <div class="imc ">
+      <img src="{{course.display_image.url}}" alt="{{course.display_image}}" />
+    </div>
+  <div class="tmc ">-->
+  <div class="dets text-white">
+    <div class="det1">
+      <h5 style="color: var(--pink)">Category > {{course.categories}}</h5>
+
+      <h2 style="color: white">{{course.title}}</h2>
+      <p style="color: white">
+        Become a fullstack web developer (and get a job) by taking this ONE
+        course, even if you've never coded before.
+      </p>
+      <p>
+        <span
+          class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+        ></span>
+        <span
+          class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+        ></span>
+        <span
+          class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+        ></span>
+        <span
+          class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+        ></span>
+        <span
+          class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+        ></span>
+        <span style="color: white"> {{course.average_rating}}</span>
+      </p>
+
+      <p style="color: white">
+        By {{course.user.first_name}} {{course.user.last_name}}
+      </p>
+    </div>
+    <div class="add">
+      <img src="{{course.display_image.url}}" alt="{{course.display_image}}" />
+      <div class="price">
+        {%if course.price > 0 %}
+        <h3>
+          <span style="text-decoration: line-through">N</span> {{course.price}}
+        </h3>
+        {%else%}
+        <h3>FREE</h3>
+        {%endif%}
+        <br />
+        <div class="bt" style="display: flex; gap: 10px">
+          {%if a == 'out'%}
+          <form action="/add-to-cart">
+            <input type="hidden" name="course_id" value="{{course.id}}" />
+            <button
+              style="
+                font-weight: bold;
+                font-size: 14px;
+                color: white;
+                width: 210px;
+                height: 40px;
+                background-color: var(--black);
+                border: none;
+                cursor: pointer;
+              "
+            >
+              Add to cart
+            </button>
+          </form>
+          <form action="/add-to-wish">
+            <input type="hidden" name="course_id" value="{{course.id}}" />
+            <button
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid var(--black);
+                font-size: 25px;
+                background-color: transparent;
+              "
+            >
+              <i class="fa fa-heart"></i>
+            </button>
+          </form>
+
+          {%else%}
+          <form>
+            <input
+              type="button"
+              class="btn btn-warning"
+              disabled
+              value="You Already own this course"
+            />
+          </form>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="oth">
+    <div class="obj">
+      <label style="font-weight: bold; font-size: 20px; color: black"
+        >Learning Objectives</label
+      >
+      <ul style="margin-left: 30px">
+        <li>
+          {{course.learning_objective_1}} Be able to build ANY website you want.
+        </li>
+        <li>
+          {{course.learning_objective_2}} Master backend development with Django
+          and Python
+        </li>
+        <li>
+          {{course.learning_objective_3}} Build fully-fledged websites and web
+          apps for your startup or business.
+        </li>
+      </ul>
+        {%if a == 'out'%}
+          <form action="/add-to-cart">
+            <input type="hidden" name="course_id" value="{{course.id}}" />
+            <button
+              style="
+                font-weight: bold;
+                font-size: 14px;
+                color: white;
+                width: 210px;
+                height: 40px;
+                background-color: var(--black);
+                border: none;
+                cursor: pointer;
+              "
+            >
+              Add to cart
+            </button>
+          </form>
+          <form action="/add-to-wish">
+            <input type="hidden" name="course_id" value="{{course.id}}" />
+            <button
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid var(--black);
+                font-size: 25px;
+                background-color: transparent;
+              "
+            >
+              <i class="fa fa-heart"></i>
+            </button>
+          </form>
+
+          {%else%}
+          <form>
+            <input
+              type="button"
+              class="btn btn-warning"
+              disabled
+              value="You Already own this course"
+            />
+          </form>
+          {%endif%}
+    </div>
+  </div>
+</section>
+{%endblock body%}

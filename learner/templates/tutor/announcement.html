@@ -1,0 +1,35 @@
+{% extends 'tutor/base.html' %}{%load static%}{% load widget_tweaks %}
+<style></style>
+
+{%block content%}
+<style>
+  textarea {
+    width: 100%;
+  }
+  select {
+    height: 40px;
+    width: 200px;
+  }
+</style>
+<div class="editp">
+  <div class="head bg-dark text-white">
+    <h2><span style="float: right">Annoucement</span></h2>
+  </div>
+  <div class="container shadow prof">
+    <form method="post">
+      {%csrf_token%}
+      <label>Course:</label>
+      {{form.course}}<br />
+      <label>Annoucement:</label>
+      {{form.announcement |add_class:"ckeditor"}}<br />
+
+      {{form.errors}}
+
+      <button style="float: right; width: 100px" class="btn btn-dark">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+{%endblock content%}

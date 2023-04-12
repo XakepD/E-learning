@@ -1,0 +1,61 @@
+{% extends 'tutor/base.html' %}{%load static%}{%block content%}
+<style>
+  h5:hover {
+    background-color: beige;
+  }
+  .checked {
+    color: orange;
+  }
+  h3 span,
+  h5 span {
+    float: right;
+    display: flex;
+  }
+  .bn {
+    width: 90%;
+    padding: 0px 30px;
+  }
+  @media (max-width: 768px) {
+    .bn {
+      width: 90%;
+      padding: 30px;
+    }
+    h5 {
+      display: flex;
+      flex-direction: column;
+    }
+    h5 span {
+      float: none;
+    }
+  }
+</style>
+<div class="head bg-dark text-white" style="padding: 10px 30px">
+  <h2><span>Annoucements</span></h2>
+</div>
+
+<div
+  style="
+    padding: 10px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  "
+  class="al"
+>
+  <div class="bn">
+    <div style="padding-bottom: 10px">
+      <a href="{%url 'announcement' %} "
+        ><button class="btn btn-primary">Add Annoucement</button></a
+      >
+    </div>
+
+    {%for announcements in announce%}
+    <div style="width: 100%" class="alert alert-primary">
+      <h4 style="font-weight: bold">{{announcements.course}}</h4>
+      <p><i>{{announcements.announcement | safe}}</i></p>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock content%}

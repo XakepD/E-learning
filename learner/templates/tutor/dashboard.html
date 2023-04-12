@@ -1,0 +1,71 @@
+{% extends 'tutor/base.html' %}{%load static%}{%block content%}
+<style>
+  .disp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    gap: 30px;
+  }
+  .board {
+    min-width: 350px;
+    height: 200px;
+    background: linear-gradient(black 30%, rgb(2, 2, 66) 70%);
+    color: white;
+    box-sizing: border-box;
+    padding: 15px 30px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .over {
+    height: 0px;
+    width: 350px;
+    position: absolute;
+    background-color: white;
+    transition: all 1s ease;
+    color: black;
+  }
+
+  h4,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+</style>
+<div class="disp">
+  <div class="board">
+    <div class="over"></div>
+    <i class="fa fa-layer-group fa-2x"></i>
+    <h3>Total Courses</h3>
+    <h4>{{lcourse}}</h4>
+  </div>
+
+  <div class="board">
+    <i class="fa fa-users fa-2x"></i>
+    <h3>Total Students</h3>
+    <h4>0</h4>
+  </div>
+  <div class="board">
+    <i class="fa fa-layer-group fa-2x"></i>
+    <h3>Active Courses</h3>
+    <h4>{{lcourse}}</h4>
+  </div>
+  <div class="board">
+    <i class="fa fa-credit-card fa-2x"></i>
+    <h3>Total Earnings</h3>
+    <h4><b>N</b>0.00</h4>
+  </div>
+  <div class="board">
+    <i class="fa fa-user"></i>
+    <h3>Enrolled Courses</h3>
+    <h4>0</h4>
+  </div>
+</div>
+{%endblock content%}

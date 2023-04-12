@@ -1,0 +1,68 @@
+{% extends 'tutor/base.html' %}{%load static%}{%block content%}
+<style>
+  .prof {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .inner {
+    width: 80%;
+    display: flex;
+    height: 400px;
+  }
+  .imgc {
+    flex: 1;
+    background: aliceblue;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pr {
+    flex: 2;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h4 span,
+  h5 span {
+    font-weight: bold;
+  }
+  @media (max-width: 768px) {
+    .inner {
+      flex-direction: column;
+      width: 90%;
+    }
+    .imgc {
+      flex: 2;
+    }
+  }
+</style>
+<div class="head bg-dark text-white" style="height: 100px">
+  <h2><span style="float: right">My Profile</span></h2>
+</div>
+<br />
+<div style="width: 100%; padding-right: 50px">
+  <a href="{%url 'tutor-edit' %}" style="float: right; font-size: 16px"
+    >Edit Profile</a
+  >
+</div>
+<div class="prof">
+  <div class="inner shadow">
+    <div class="imgc">
+      <i class="fa fa-user fa-8x"></i>
+    </div>
+    <div class="pr">
+      <h4><span>My Profile</span></h4>
+      <br />
+      <h5><span>Username: </span>{{request.user}}</h5>
+      <h5><span>First Name: </span> {{request.user.first_name}}</h5>
+      <h5><span>Last Name: </span> {{request.user.last_name}}</h5>
+
+      <h5><span>Email: </span> {{request.user.email}}</h5>
+    </div>
+  </div>
+</div>
+{%endblock content%}

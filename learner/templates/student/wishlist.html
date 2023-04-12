@@ -1,0 +1,192 @@
+{% extends 'student/base.html' %}{%load static%} {%block content%}
+<style>
+  a {
+    text-decoration: none;
+  }
+  .course {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .checked {
+    color: orange;
+  }
+  .course-container {
+    width: 100%;
+    padding: 30px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: "Poppins", sans-serif;
+  }
+  .cats {
+    width: 100%;
+    padding: 30px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-family: "Poppins", sans-serif;
+  }
+  .cat {
+    min-width: 200px;
+    max-width: 400px;
+    height: 50px;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  .brox {
+    width: 220px;
+    color: rgb(29, 27, 27);
+    transition: all 1s ease;
+    background-color: white;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+  }
+  .view {
+    font-weight: bold;
+    width: 100%;
+    height: 40px;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+  }
+  .olay {
+    padding: 0px 15px;
+    box-sizing: border-box;
+    width: 250px;
+    height: 280px;
+    overflow: hidden;
+    background-color: black;
+    position: absolute;
+    z-index: 3;
+    transition: all 0.7s ease;
+    color: white !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: scale(0);
+  }
+  .olay ol {
+    margin-left: 10px;
+  }
+  .brox:hover .olay {
+    transform: scale(1);
+    height: 280px;
+  }
+  .course-image-container {
+    height: 120px;
+    width: 250px;
+    overflow: hidden;
+  }
+  .course-image-container img {
+    height: 150px;
+    width: 250px;
+    transition: all 1s ease;
+  }
+  .course-info-container {
+    padding: 0px 0px;
+    margin-top: -10px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .course-info-container h6,
+  .course-info-container p {
+    margin-top: -6px;
+    font-size: 11px !important;
+  }
+  .brox:hover .course-image-container img {
+    transform: scale(1.2);
+  }
+  .brox:hover,
+  .cat:hover {
+    box-shadow: 0 0 0;
+  }
+  .brox h6,
+  .brox h4,
+  .brox h5 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+  }
+  .brox h6 {
+    font-size: 12px !important;
+  }
+  .brox h4 {
+    font-size: 18px !important;
+  }
+  .olay li {
+    font-size: 11px;
+  }
+
+  @media (max-width: 768px) {
+    .course-container {
+      padding: 10px 0px;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    .brox {
+      width: 230px;
+    }
+  }
+</style>
+<div class="head bg-dark text-white" style="height: 100px">
+  <h2><span style="float: right">My Wishlist</span></h2>
+</div>
+<section class="courses">
+  <div class="course-container">
+    {%for course in latest%}
+
+    <div class="brox" style="overflow: hidden">
+      <div class="bx" style="overflow: hidden">
+        <div class="course-image-container">
+          <img
+            src="{{course.course.display_image.url}}"
+            alt="{{course.course.display_image}}"
+            style="height: 150px; width: 250px"
+          />
+        </div>
+        <div class="course-info-container">
+          <h4>{{course.course.title}}</h4>
+          <p>{{course.user.first_name}} {{course.user.last_name}}</p>
+          <p>
+            <span
+              class="fa fa-star {% if course.course.average_rating > 0 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.course.average_rating > 1 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.course.average_rating > 2 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.course.average_rating > 3 %} checked {% endif %}"
+            ></span>
+            <span
+              class="fa fa-star {% if course.course.average_rating > 4 %} checked {% endif %}"
+            ></span>
+            {{course.course.average_rating}}
+          </p>
+
+          <h6>
+            <b style="text-decoration: line-through">N</b>
+            {{course.course.price}}.00
+          </h6>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+  {%endblock content%}
+</section>

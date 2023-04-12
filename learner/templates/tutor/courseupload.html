@@ -1,0 +1,80 @@
+{% extends 'tutor/base.html' %}{%load static%}{%block body%} {% extends
+'tutor/base.html' %}{%load static%}{%block content%}
+<style>
+  textarea {
+    width: 100%;
+  }
+  select {
+    height: 40px;
+    width: 200px;
+  }
+</style>
+<div class="editp">
+  <div class="head bg-dark text-white">
+    <h2><span style="float: right">Add Course</span></h2>
+  </div>
+  <div class="container shadow prof">
+    <form method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+      <p style="display: non e">{{course.user}}</p>
+      <br />
+      <label>Category:</label>
+      {{course.categories}}<br />
+      <label>Title:</label>
+      {{course.title}}<br />
+      <label>Price:</label>
+      {{course.price}}<br />
+      <label>Discounted price:</label>
+      {{course.discounted_price}}<br />
+      <label>Description:</label>
+      {{course.descrption}}
+
+      <br />
+      <label>learning objectives:</label>
+      {{course.learning_objective_1}}<br />
+      {{course.learning_objective_2}}<br />
+      {{course.learning_objective_3}}<br />
+      <label>Display Image:</label>
+      {{course.display_image}}<br />
+      {{course.errors}}
+
+      <br />
+      <button style="float: right; width: 100px" class="btn btn-dark">
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+{%endblock content%}
+
+<!--<form
+  
+  class="container"
+  method="post"
+  id="product_form"
+>
+  {% csrf_token %}
+  main form start --- in our case product form -->
+<!-- <div class="card">
+    <div class="card-header card-header-secondary">
+      <h4 class="card-title">Add Course</h4>
+    </div>
+    {% for field in course %}
+    <div class="form-group card-body">
+      <label>{{field.label}}</label>
+      {% if field.field.required %}
+      <span style="color: red" class="required">*</span>
+      {% endif %} {{field}} {% if field.help_text %}
+      <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %} {% for error in field.errors %}
+      <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <button class="btn">Save</button>
+</form>-->
+<script>
+  $("input").addClass("input form-control")
+</script>
+{%endblock body%}

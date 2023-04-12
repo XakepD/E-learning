@@ -1,0 +1,30 @@
+{% extends 'tutor/base.html' %}{%load static%} {%block content %}
+<style>
+  input {
+    height: 40px;
+    width: 500px;
+    border: solid 1px;
+  }
+  button {
+    width: 200px;
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #44203d;
+    border: none;
+  }
+</style>
+<div class="head bg-dark text-white">
+  <h4><span>change Password</span></h4>
+</div>
+<div style="padding: 30px 50px; margin: auto">
+  <form method="post">
+    {% csrf_token %} {% for field in form%}
+    <div><label>{{field.label_tag}}</label> {{field}}</div>
+    <p style="color: red">{{field.errors}}</p>
+    {%endfor%}
+    <button>Submit</button>
+  </form>
+</div>
+{%endblock content%}

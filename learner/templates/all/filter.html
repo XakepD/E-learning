@@ -1,0 +1,120 @@
+{% extends 'all/base.html' %}{%load static%}{%block body%}
+<br />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<style>
+  [data-style="mypops"] + .popover {
+    background: #4194ca;
+  }
+  [data-style="mypops"] + .popover.bottom .arrow:after {
+    border-bottom-color: #4194ca;
+  }
+
+  .popovermenu {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .popovermenu li a {
+    color: #fff;
+  }
+</style>
+<section class="courses">
+  <div
+    class="nm"
+    style="display: flex; justify-content: flex-start; width: 90%"
+  >
+    <h3>
+      Search result for
+      <b style="color: #ff0062">{{search}}</b>
+    </h3>
+  </div>
+
+  <div class="course-container owl-carousel owl-theme can">
+    {%for course in courses%}
+
+    <a href="{%url 'details' course.id%}">
+      <div
+        class="course-box shadow item red-tooltip"
+        data-toggle="tooltip"
+        data-placement="right"
+        data-html="true"
+        title="<h4>{{course.title}}</h4>
+      <b>March 2023</b>
+      <p>Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!</p>
+            <ol>
+              <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
+              <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
+              <li>You will master the Python programming language </li>
+            </ol>
+            <div>
+            <form action='/add-to-cart'>
+            <input type='hidden' name='course_id' value='{{course.id}}'' />
+            <button
+             
+            >
+              Add to cart
+            </button>
+          </form> <form action='/add-to-wish'>
+          <input type='hidden' name='course_id' value='{{course.id}}' />
+          <button
+          class='bit'
+            style='
+              width: 40px;
+              height: 40px;
+              outline:none;
+              
+              font-size: 25px;
+              background-color: transparent;
+            '
+          >
+            <i class='fa fa-heart'></i>
+          </button></form></div> "
+      >
+        <div class="bx">
+          <div class="course-image-container">
+            <img
+              src="{{course.display_image.url}}"
+              alt="{{course.display_image}}"
+            />
+          </div>
+          <div class="course-info-container">
+            <h5>{{course.title}}</h5>
+            <h6>{{course.user}}</h6>
+            <h6>
+              <span
+                class="fa fa-star {% if course.average_rating > 0 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 1 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 2 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 3 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if course.average_rating > 4 %} checked {% endif %}"
+              ></span>
+              {{course.average_rating}}
+            </h6>
+
+            <p>
+              <b style="text-decoration: line-through">N</b> {{course.price}}.00
+            </p>
+          </div>
+        </div>
+      </div>
+    </a>
+    {%endfor%}
+  </div>
+</section>
+
+{%endblock body%}

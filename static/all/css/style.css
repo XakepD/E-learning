@@ -1,0 +1,452 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+:root {
+  --alice: aliceblue;
+  --pik: #fd5d78;
+  --white: rgb(250, 250, 250);
+  --blue: #010049;
+  --black: #44203d;
+  --blu: linear-gradient(to right, rgb(22, 105, 212), rgb(212, 6, 75));
+  --pink: #f56c6c;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 200px;
+  text-align: left;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 0px;
+  z-index: 101;
+  margin-left: -100px;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+.logout {
+  width: 100%;
+  height: 50px;
+  border: none;
+  background-color: var(--black);
+  border-top: solid 2px grey;
+  font-weight: bold;
+  transition: all 0.5s ease;
+  color: #ffffff;
+  cursor: pointer;
+}
+.dropdown-content a {
+  color: var(--black);
+  font-weight: 400;
+  width: 100%;
+  padding: 5px 0px;
+}
+.dropdown-content a:hover {
+  color: var(--pink);
+}
+.logout:hover {
+  background-color: rgb(255, 255, 255);
+  color: var(--black);
+}
+body {
+  background: var(--black);
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-x: hidden;
+}
+header {
+  top: 0;
+  position: sticky;
+  width: 100%;
+  padding: 15px 50px;
+
+  background-color: white;
+  z-index: 101;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.555);
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+header .left,
+header .right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  box-sizing: border-box;
+}
+header .center {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  box-sizing: border-box;
+}
+header a {
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+header a:hover {
+  color: var(--pink);
+}
+.left img {
+  height: 50px;
+}
+header .search {
+  width: 34%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-top: 10px;
+}
+header .links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+button {
+  cursor: pointer;
+}
+header input {
+  flex: 3;
+  height: inherit;
+  outline: none;
+  padding-left: 20px;
+  font-size: 14px;
+  border: none;
+}
+header .search button {
+  height: 40px;
+  flex: 1;
+  color: white;
+  background-color: var(--black);
+  font-weight: bold;
+  transition: all 1s ease;
+  border: none;
+}
+.right button {
+  height: 40px;
+  flex: 1;
+  color: var(--black);
+  background-color: white;
+  font-weight: bold;
+  padding: 0px 30px;
+  border-radius: 40px;
+  transition: all 1s ease;
+}
+.lnk {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+.lnk a {
+  text-decoration: none;
+  color: black;
+  border-bottom: none;
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 5px;
+}
+.lnk a:hover {
+  background: none;
+}
+header button:hover {
+  background: var(--black);
+  color: white;
+}
+.display {
+  width: 100%;
+  height: 85vh;
+  background-color: antiquewhite;
+  border-radius: 0px 0px 100px 100px;
+  overflow: hidden;
+}
+.home {
+  width: 100%;
+  height: 850px;
+}
+.home_slider_container {
+  width: 100%;
+  height: 100%;
+}
+.home_slider {
+  width: 100%;
+  height: 100%;
+}
+.home_slider_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.home_slider_content {
+  position: absolute;
+  top: 41%;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+.home_slider_title {
+  font-family: "Roboto Slab", serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #384158;
+}
+.home_slider_subtitle {
+  font-size: 24px;
+  color: #76777a;
+  margin-top: 9px;
+}
+.home_slider_form_container {
+  width: 832px;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+.checked {
+  color: orange;
+}
+footer {
+  width: 100%;
+  height: 50vh;
+  background-color: #ffffff;
+  border-radius: 100px 100px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 50px 100px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.comp,
+.fcontact,
+.fcat,
+.flast {
+  flex: 1;
+  height: 100%;
+}
+.dos {
+  padding: 50px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.courses {
+  box-sizing: border-box;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  border-radius: 100px;
+}
+.course-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 30px 50px;
+}
+.course-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 300px;
+  min-width: 250px;
+  width: 250px;
+  border-radius: 40px 40px 10px 10px;
+  border: 1px solid;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: var(--black);
+  box-shadow: 1px 1px 2px black;
+}
+.texts {
+  line-height: 15px;
+  padding: 5px 15px;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+.image-cont {
+  height: 150px;
+  width: 100%;
+  background-color: var(--black);
+  border-radius: 40px;
+  overflow: hidden;
+  border: 1px solid;
+}
+.image-cont img {
+  width: inherit;
+  height: inherit;
+}
+.info-cont {
+  height: 114px;
+  width: 100%;
+  border: 4px solid white;
+  border-radius: 10px;
+  background-color: white;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.info-cont p {
+  font-size: 14px;
+  margin-top: -10px;
+}
+.overlay {
+  height: 0px;
+  width: 0px;
+  transform: scale(0.1);
+  transition: all 1s ease;
+  background-color: var(--black);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+}
+.overlay button {
+  height: 40px;
+  flex: 1;
+  width: 200px;
+  color: rgb(255, 255, 255);
+  background-color: var(--black);
+  border: solid white;
+  font-weight: bold;
+
+  border-radius: 40px;
+  transition: all 1s ease;
+}
+.course-box:hover .overlay {
+  transform: scale(1);
+  padding: 10px;
+
+  width: inherit;
+  height: inherit;
+}
+.cats {
+  box-sizing: border-box;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  border-radius: 100px;
+  gap: 30px;
+}
+.Categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.category {
+  background: var(--black);
+  color: white;
+  height: 150px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+}
+.category:hover {
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.555);
+}
+.bars {
+  display: none;
+}
+.sidenav {
+  display: none;
+}
+.sidebar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  header .right,
+  header .center {
+    display: none;
+  }
+  header {
+    padding: 10px 20px;
+  }
+  header .left {
+    justify-content: flex-start;
+  }
+  header .bars {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    gap: 20px;
+  }
+  .sidebar {
+    height: 100vh;
+    width: 0px;
+    position: fixed;
+    background-color: white;
+    transition: all 1s ease;
+    overflow: hidden;
+  }
+  .sidenav {
+    height: 100vh;
+    width: 0px;
+    right: 0;
+    position: absolute;
+    background-color: black;
+    transition: all 1s ease;
+  }
+  .lnk {
+    padding-left: 30px;
+  }
+  .lnk a {
+    font-size: 15px;
+  }
+  .lnk a:hover {
+    color: grey;
+  }
+}

@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  background: url("../../images/a.jpg");
+  background-position: fixed;
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+.wrap,
+.wrap1 {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: auto;
+  background-color: rgba(2, 1, 1, 0.534);
+  backdrop-filter: blur(1px);
+  box-sizing: border-box;
+}
+
+img {
+  height: 70px;
+}
+
+.formwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: -moz-linear-gradient();
+  border-radius: 44px;
+  height: 100%;
+  width: 450px;
+}
+.flx {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 36px;
+  height: 90%;
+  width: 90%;
+}
+.wrap {
+  height: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+.form1 {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.884);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px 0 rgba(12, 7, 7, 0.15);
+}
+
+.formwrap input {
+  height: 40px;
+  width: 300px;
+  background-color: rgb(255, 255, 255);
+  outline: none;
+  padding-left: 20px;
+  border: solid 0.6px grey;
+  margin-top: -15px;
+}
+
+span {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+button {
+  width: 300px;
+  height: 40px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  transition: all 1s ease;
+  margin-top: 15px;
+}
+button:hover {
+  background: white;
+  color: black;
+}
+label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .infowrap {
+    display: none;
+  }
+  .wrap {
+    background: url("../img/cat-4.jpg");
+    height: 100%;
+    width: 100%;
+  }
+  .formwrap {
+    background-color: rgba(255, 255, 255, 0.568);
+    height: 80%;
+    padding: 0px 30px 0px 30px;
+  }
+}

@@ -1,0 +1,481 @@
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        letter-spacing: 1px;
+      }
+      #avi {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+      }
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 50px;
+      }
+      hr {
+        width: 90%;
+        padding-right: 40px;
+      }
+      .name {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+      }
+      .others {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      .others a {
+        text-decoration: none;
+      }
+      .others button {
+        height: 30px;
+        padding: 0px 20px;
+        background-color: transparent;
+        border: solid 1px rgb(34, 75, 211);
+        color: rgb(34, 75, 211);
+        border-radius: 3px;
+        font-size: 14px;
+      }
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        
+        align-items: center;
+        position: fixed;
+        z-index: 101;
+        top: 0;
+        width: 50px;
+        height: 100vh;
+        transition: all .5s ease;
+        overflow: hidden;
+       background: linear-gradient(black 30%, rgb(1, 1, 37) 70%);
+      }
+      .sidebar:hover {
+        width: 250px;
+      }
+      ul li {
+        width: 100%;
+        padding: 8px 16px;
+      }
+      ul a {
+        text-decoration: none;
+        padding: 8px 16px;
+        width: 100%;
+      }
+      ul a:hover {
+        background-color: beige;
+      }
+      h1 span {
+        margin-left: 18px;
+      }
+      .sidebar:hover h1 span {
+        margin-left: 0px;
+      }
+      .sidebar h6 {
+        font-weight: bold;
+      }
+      .links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        
+      }
+      .links a {
+        height: 53px;
+        width: 100%;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        border-radius: 5px;
+        padding-left: 13px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        text-decoration: none;
+        transition: all 0.6s ease;
+        font-size: 12px;
+      }
+      .links a span,
+      h1 span {
+        opacity: 0;
+        transition: all 1s ease;
+      }
+      .links i {
+        color: rgb(255, 255, 255);
+        transition: all 0.6s ease-in-out;
+        transform: scale(0.7);
+        opacity: 1;
+      }
+      .sidebar:hover .links a span,
+      .sidebar:hover h1 span {
+        opacity: 1;
+      }
+      .links a:hover,
+      .links a:hover i {
+        background-color: rgba(255, 255, 255, 0.158);
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+      }
+      .body {
+        display: flex;
+      }
+      .editp {
+        width: 100%;
+        height: 100%;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .prof {
+        height: 100%;
+        width: 90%;
+        padding: 40px;
+      }
+      .prof form {
+        display: flex;
+        flex-direction: column;
+      }
+      textarea {
+        width: 100%;
+      }
+      select {
+        height: 40px;
+        width: 200px;
+      }
+      .head {
+        width: 100%;
+        background-color: rgb(201, 199, 199);
+        padding: 20px;
+        font-weight: bold;
+      }
+      .dp {
+        width: 150px;
+        height: 150px;
+        padding: 20px;
+        border: solid 1px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url("../../../static/images/avi.png");
+        background-size: cover;
+        background-position: center;
+      }
+      .dp i {
+        color: grey;
+      }
+
+      .all {
+        width: 100%;
+        margin-left: 50px;
+        overflow: hidden;
+      }
+      .all2 {
+        width: 100%;
+        overflow: hidden;
+      }
+      .head h2 {
+        font-weight: bold;
+      }
+      .prof label {
+        font-weight: bold;
+      }
+      .prof input {
+        height: 40px;
+        width: 60%;
+        border: solid 2px grey;
+        outline: none;
+      }
+      .sidenav {
+        display: none;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        min-width: 300px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 12px 12px;
+        z-index: 101;
+        margin-left: -200px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .user {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        background-color: #ffffff;
+        align-items: center;
+        padding: 0px 20px;
+        top: 0;
+      }
+      .bar {
+        display: none;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .circled {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex: 1;
+      }
+      .circle {
+        background-color: rgb(0, 0, 0);
+        height: 50px;
+        width: 50px !important;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+      .logout {
+        width: 100%;
+        height: 50px;
+        border: none;
+        background-color: #000000;
+        border-top: solid 2px grey;
+        font-weight: bold;
+        transition: all 0.5s ease;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      .logout:hover {
+        background-color: rgb(255, 255, 255);
+        color: black;
+      }
+      @media (max-width: 768px) {
+        .sidebar {
+          display: none;
+        }
+        .sidenav {
+          display: none;
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          z-index: 101;
+          top: 0;
+          width: 250px;
+          height: 100vh;
+          transition: all 1s ease;
+          overflow: hidden;
+          background-color: rgb(0, 0, 0);
+          transition: all 1s ease;
+        }
+        .editp {
+          width: 100%;
+          padding: 15px;
+        }
+        .prof {
+          height: 100%;
+        }
+        .prof input {
+          width: 100%;
+        }
+        .all {
+          margin-left: 0;
+        }
+        .user {
+          width: 100%;
+          height: 80px;
+          background-color: black;
+          display: flex;
+
+          align-items: center;
+          padding: 0px 20px;
+          position: sticky;
+          top: 0;
+        }
+        .bar {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+        .circled {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          flex: 1;
+        }
+        .circle {
+          background-color: white;
+          height: 50px;
+          width: 50px !important;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body">
+      <div class="sidebar shadow">
+        <div class="links">
+          <a href="{%url 'home'%}">
+            <h1 style="font-size: 15px; color: white; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+              <img src="{% static 'images/eea-logon.png'%}" style="width: 27px; margin-top: -5px;"/><span>EEA</span>
+            </h1>
+          </a>
+          
+          <a href="{%url 'tutor-edit' %}"
+            ><i class="fa-regular fa-2x fa-user"></i><span>Profile</span>
+          </a>
+          <a href="{%url 'tutorcourses' %}"
+            ><i class="fa-regular fa-2x fa-play-circle"></i>
+            <span>Courses</span>
+          </a>
+          <a href="{%url 'announcements' %}"
+            ><i class="fa fa-2x fa-bullhorn"></i> 
+            <span> Annoucements</span>
+          </a>
+          <a href="{%url 'reviews' %}"
+            ><i class="fa-regular fa-2x fa-star"></i><span>Reviews</span>
+          </a>
+           <a href="{%url 'tpswdchange' %}"
+            ><i class="fa fa-2x fa-gear"></i><span>Settings</span>
+          </a>
+          <hr style="border: 1px solid white;">
+          <a href="{%url 'logout' %}"
+            ><i class="fa-solid fa-2x fa-arrow-right-to-bracket"></i><span>Log Out</span>
+          </a>
+        </div>
+      </div>
+      <!--nav-->
+      <div class="sidenav shadow">
+        <div class="links">
+         <a href="{%url 'home'%}" >
+            <h1 style="font-size: 15px; color: white; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+              <img src="{% static 'images/eea-logon.png'%}" style="width: 27px;"/>EEA
+            </h1>
+          </a>
+        
+          <a href="{%url 'tutor-edit' %}"
+            ><i class="fa-regular fa-2x fa-user"></i>Profile
+          </a>
+          <a href="{%url 'tutorcourses' %}"
+            ><i class="fa-regular fa-2x fa-play-circle"></i>
+            Courses
+          </a>
+          <a href="{%url 'announcements' %}"
+            ><i class="fa fa-2x fa-bullhorn"></i> 
+             Annoucements
+          </a>
+          <a href="{%url 'reviews' %}"
+            ><i class="fa-regular fa-2x fa-star"></i>Reviews
+          </a>
+           <a href="{%url 'tpswdchange' %}"
+            ><i class="fa fa-2x fa-gear"></i>Settings
+          </a>
+          <hr style="border: 1px solid white;">
+          <a href="{%url 'logout' %}"
+            ><i class="fa-solid fa-2x fa-arrow-right-to-bracket"></i>Log Out
+          </a>
+        </div>
+      </div>
+      <div class="all">
+        <div class="user shadow-sm">
+          <div class="bar">
+            <i
+              class="fa fa-bars fa-2x text-white"
+              id="op"
+              style="cursor: pointer"
+            ></i>
+          </div>
+
+          <div class="circled">
+            <div class="dropdown">
+              <div class="di">
+              <p style="font-weight: bold"><i class="fa fa-user fa-2x"></i> Tutor</p>
+            </div>
+              <div class="dropdown-content" style="z-index: 1000">
+                <h4 style="font-family: 'Poppins', sans-serif">
+                  {{request.user}}
+                </h4>
+
+                
+                </ul>
+                <a href="{%url 'logout' %}" style="width: 100%"
+                  ><button class="logout">Log Out</button></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="all2" id="cl">{%block content%} {%endblock content%}</div>
+      </div>
+    </div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        $(".sidenav").css("width", "0px")
+        $(window).resize(function () {
+          $(".sidenav").css("width", "0px")
+        })
+      })
+      $("#op").click(function () {
+        $(".sidenav").css("display", "block")
+        $(".sidenav").css("width", "250px")
+      })
+      $("#cl").click(function () {
+        $(".sidenav").css("width", "0px")
+      })
+    </script>
+  </body>
+</html>

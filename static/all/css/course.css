@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap");
+:root {
+  --alice: aliceblue;
+  --pik: #fd5d78;
+  --back: rgb(255, 255, 255);
+  --blue: #010049;
+  --black: #44203d;
+  --blu: linear-gradient(to right, rgb(22, 105, 212), rgb(212, 6, 75));
+  --pink: #f56c6c;
+}
+.courses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.courses h3 {
+  padding-left: 30px;
+}
+
+.checked {
+  color: orange;
+}
+
+.course-container {
+  width: 90%;
+  padding: 30px 30px;
+  gap: 15px !important;
+  display: flex;
+}
+.course-box {
+  width: 200px;
+  min-width: 200px;
+  color: rgb(29, 27, 27);
+  transition: all 1s ease;
+  line-height: 30px;
+}
+.cats {
+  width: 100%;
+  padding: 100px 100px 100px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: -100px;
+
+  background-color: #f7f7f7;
+  font-family: "Poppins", sans-serif;
+}
+.cats h3 {
+  font-family: "Poppins", sans-serif !important;
+}
+.cat {
+  min-width: 200px;
+  max-width: 200px;
+  height: 50px;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+}
+.catt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.course-info-container h6 {
+  font-weight: 400;
+  font-size: 10px !important;
+  color: red;
+}
+.bx h5 {
+  font-size: 14px !important;
+}
+/*.view {
+  font-weight: bold;
+  width: 100%;
+  height: 40px;
+  border: 1px solidvar(--back);
+  background-color: transparent;
+  color: var(--back);
+}*/
+
+.course-box:hover .ovlay {
+  transform: scale(1);
+
+  height: 230px;
+}
+.course-image-container {
+  height: 120px;
+  width: 100%;
+  overflow: hidden;
+}
+.course-image-container img {
+  height: 100%;
+  width: 100%;
+  transition: all 1s ease;
+}
+.course-info-container {
+  max-height: 110px;
+  display: flex;
+  line-height: 30px;
+  flex-direction: column;
+  padding: 5px 0px;
+}
+.course-box:hover .course-image-container img {
+  transform: scale(1.2);
+}
+.course-box:hover,
+.cat:hover {
+  box-shadow: 0 0 0;
+}
+.course-box h6 {
+  color: grey;
+}
+.course-box h5 {
+  color: black;
+}
+.course-box h6,
+.course-box h4,
+.course-box h5,
+.course-box p {
+  font-family: "Poppins", sans-serif;
+  margin-top: 5px;
+}
+.courses h3 {
+  font-family: "Poppins", sans-serif;
+  color: black;
+  font-weight: 18px;
+}
+.course-box p {
+  font-weight: bold;
+  color: black;
+}
+.course-box h6 {
+  font-size: 11px !important;
+}
+.course-box h4 {
+  font-size: 18px !important;
+}
+.ovlay li {
+  font-size: 11px;
+}
+
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-dot.owl-nav {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  background-color: rgb(9, 1, 17) !important;
+  display: block;
+  padding: 0 0.3em !important;
+  font-size: 1.5em;
+  margin: 0;
+  margin-top: -165px !important;
+  border-radius: 50%;
+  padding-top: 10px !important;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  color: #fff;
+  transform: translate(-50%, -50%) !important;
+}
+
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-dot.owl-nav {
+  position: absolute;
+  right: -35px;
+  top: 50%;
+  background-color: rgb(9, 1, 17) !important;
+  display: block;
+  padding: 0 0.3em !important;
+  font-size: 1.5em;
+  margin: 0;
+  margin-top: -165px !important;
+  cursor: pointer;
+  border-radius: 50%;
+  padding-top: 10px !important;
+  height: 40px;
+  width: 40px;
+  color: #fff;
+  transform: translate(-50%, -50%) !important;
+}
+.tooltip-arrow,
+.red-tooltip + .tooltip > .tooltip-inner {
+  background-color: #f00;
+}
+
+.tooltip-qm {
+  float: left;
+  margin: -2px 0px 3px 4px;
+  font-size: 12px;
+}
+.tooltip-inner button {
+  height: 40px;
+  min-width: 190px;
+  background-color: var(--black);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+.tooltip-inner div {
+  display: flex;
+  gap: 10px;
+}
+.tooltip-inner .bit{
+  width: 40px;
+  outline: none;
+}
+.tooltip-inner div i {
+  min-width: 40px;
+  max-width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  color: black;
+  border-radius: 50%;
+  font-size: 25px;
+}
+.tooltip-inner p {
+  font-size: 11px;
+  line-height: 20px;
+}
+.tooltip-inner li {
+  list-style: square;
+}
+.tooltip-inner {
+  min-width: 300px !important;
+  max-width: 300px !important;
+  height: 350px;
+  font-size: 12px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.7);
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.26);
+  text-align: left;
+  border: 0.2px solid grey;
+}
+.tooltip-inner:hover .tooltip,
+.tooltip-arrow:hover .tooltip,
+.tooltip-inner:hover .tooltip-inner,
+.tooltip-arrow:hover .tooltip-inner,
+.tooltip-qm:hover .tooltip,
+.tooltip-qm:hover .tooltip-inner {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before,
+.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: #f00;
+  /* Red */
+}
+ul {
+  list-style: square;
+}
+.tooltip-inner b {
+  font-size: 11px;
+}
+.nm {
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  .course-container {
+    padding: 10px 0px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .course-box {
+    width: 230px;
+  }
+  .cats {
+    padding: 30px;
+    display: block;
+  }
+  .catt {
+    margin-top: 20px;
+  }
+  .nm {
+    width: 100%;
+  }
+}

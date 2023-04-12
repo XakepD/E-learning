@@ -1,0 +1,191 @@
+{% load static %} {% load crispy_forms_tags %} {% csrf_token %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+
+    <link rel="stylesheet" href='{% static "student/css/f orm.css" %}' />
+    <link rel="stylesheet" href='{% static "css/form.c ss" %}' />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    
+    <style>
+      body{
+        overflow: hidden;
+        margin: 0;
+        background-color: #f1f1ff;
+      }
+      
+
+.wrap{
+  width: 100%;
+height: 100vh;
+margin: 0;
+box-sizing: border-box;
+display: flex;
+
+justify-content: center;
+align-items: center;
+font-family: "Poppins", sans-serif;
+ }
+.formwrap{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.527);
+  overflow: hidden;
+  border-radius: 10px;
+  
+}
+.infowrap{
+  flex: 1;
+ background: url("../../../static/images/login.jpg");
+ background-position: center;
+ background-size: cover;
+
+  
+}
+a{
+  text-decoration: none;
+}
+.form1{
+  flex: 1;
+
+  background: rgba(255, 255, 255);
+  height: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+   border-right: dashed 5px black;
+
+}
+.formwrap input {
+  height: 40px;
+  width: 300px;
+  background-color: rgb(255, 255, 255);
+  outline: none;
+  padding-left: 20px;
+  border: solid 0.6px grey;
+  margin-top: -15px;
+
+}
+
+span {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+button {
+  width: 300px;
+  padding: 12px 0px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  transition: all 1s ease;
+  margin-top: 15px;
+  
+}
+button:hover {
+  background: white;
+  color: black;
+}
+p{
+  font-weight: bold;
+  font-size: 14px;
+}
+label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.txt{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+   background-color: rgba(255, 255, 255, 0.61);
+  backdrop-filter: blur(5px);
+  animation: col 5s ease infinite;
+}
+
+.top{
+  height: 60px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.61);
+  backdrop-filter: blur(5px);
+  border-bottom: solid;
+}
+
+@media (max-width: 768px) {
+  .infowrap {
+    display: none;
+  }
+  .wrap {
+    background: url("../../../static/images/cat-4.jpg");
+    height: 100%;
+    width: 100%;
+  }
+  .formwrap {
+    background-color: rgba(255, 255, 255, 0.692);
+    height: 80%;
+    width: 90%;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form1{
+    
+    background-color:transparent;
+     width: 100%;
+    display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 30px;
+  }
+}
+
+    </style>
+  </head>
+  <div>
+
+  <div class="wrap wrap1">
+      
+      <div class="formwrap" ">
+        
+        <form method="post" class="form1">
+          
+          <h4>Welcome Back!</h4>
+          <div class="inform">
+          {% csrf_token %} {% for field in login_form %}<span
+              >{{ field.label_tag }}<br />
+              {{ field }}</span
+            >
+            <p style="color: red; font-size: 12px;">{{ field.errors }}</p>
+            {% endfor %}
+<p>Forgot Password? <a href="{% url 'pswdreset' %}">Reset here</a></p>
+          <button class="formbtn">Login</button>
+         
+       
+        </div>
+         <p> Don't have an account yet?
+          <a href="{% url 'studentsignup' %}">Sign up</a>
+        </p>
+        </form>
+        <div class=" infowrap">
+          
+        </div>
+      </div>
+    </div>
+
+   
+</div>
+  </body>
+</html>

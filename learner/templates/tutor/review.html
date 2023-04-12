@@ -1,0 +1,72 @@
+{% extends 'tutor/base.html' %}{%load static%}{%block content%}
+<style>
+  h3,
+  h5 {
+    padding: 15px 50px;
+    font-weight: bold;
+  }
+  h5:hover {
+    background-color: beige;
+  }
+  .checked {
+    color: orange;
+  }
+  h3 span,
+  h5 span {
+    float: right;
+    display: flex;
+  }
+  @media (max-width: 768px) {
+    h5 {
+      display: flex;
+      flex-direction: column;
+    }
+    h5 span {
+      float: none;
+    }
+  }
+</style>
+<div class="head bg-dark text-white" style="height: 100px">
+  <h2><span style="float: right">Course Reviews</span></h2>
+</div>
+<div
+  style="
+    padding: 10px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  "
+  class="shadow al"
+>
+  <div style="width: 70%; padding: 30px" class="shadow">
+    <h3 style="width: 100%">
+      <span style="font-weight: bold; float: right">Ratings</span>
+    </h3>
+    {%for courses in course%}
+    <div style="width: 100%">
+      <h5 style="width: 100%">
+        {{courses.title}}<span style="transform: scale(0.8)">
+          <span
+            class="fa fa-star {% if courses.average_rating > 0 %} checked {% endif %}"
+          ></span>
+          <span
+            class="fa fa-star {% if courses.average_rating > 1 %} checked {% endif %}"
+          ></span>
+          <span
+            class="fa fa-star {% if courses.average_rating > 2 %} checked {% endif %}"
+          ></span>
+          <span
+            class="fa fa-star {% if courses.average_rating > 3 %} checked {% endif %}"
+          ></span>
+          <span
+            class="fa fa-star {% if courses.average_rating > 4 %} checked {% endif %}"
+          ></span>
+          <span>{{courses.average_rating}}</span>
+        </span>
+      </h5>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock content%}

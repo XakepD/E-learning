@@ -1,0 +1,62 @@
+.cart {
+  display: flex;
+  padding: 20px 110px;
+  gap: 50px;
+  color: black;
+}
+.course-cart {
+  flex: 3;
+}
+.cart-course .links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.cart-course {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+.checked {
+  color: orange !important;
+}
+.price {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 120px;
+}
+p {
+  color: black !important;
+}
+h2 {
+  color: black;
+}
+.descrption h6 {
+  font-size: 14px;
+}
+.descrption {
+  width: 50%;
+}
+.descrption p {
+  font-size: 11px;
+}
+.cart-course img {
+  width: 110px;
+  height: 70px;
+}
+.course-check {
+  flex: 1;
+  height: 300px;
+}
+.course-check button {
+  width: 100%;
+  height: 40px;
+  background-color: var(--black);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  outline: none;
+}

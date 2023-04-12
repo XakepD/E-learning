@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+}
+.tutorial {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+}
+.contents {
+  flex: 3;
+  height: 100%;
+  background-color: aliceblue;
+}
+
+.content-list {
+  flex: 1;
+}
+header {
+  height: 70px;
+  width: 100%;
+  background: black;
+  padding: 0px 30px;
+  display: flex;
+  align-items: center;
+  top: 0;
+  position: sticky;
+  z-index: 100;
+}
+.display {
+  width: 100%;
+  height: 400px;
+  background-color: black;
+  overflow-y: scroll;
+}
+.menus {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.menus a {
+  height: 100%;
+  padding: 0px 20px;
+  color: grey;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+.menus a:hover {
+  color: black;
+  background: url("../../images/media/coursevideo/Flask_Tutorial_1_-_How_to_Make_Websites_with_Python.mp4");
+}
+.display video {
+  width: 100%;
+  height: 100%;
+}
+.conts {
+  padding: 20px 170px 20px 110px;
+}
+#overview {
+  padding: 100px 20px !important;
+}
+.conts p,
+.conts li {
+  font-size: 14px;
+}
+li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: grey;
+  padding: 10px;
+}

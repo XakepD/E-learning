@@ -1,0 +1,59 @@
+{% extends 'student/base.html' %}{%load static%}{%block content%}
+<style>
+  .my-learning {
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    background-color: white;
+  }
+  .mcourse {
+    width: 350px !important;
+    height: 150px !important;
+    border: solid;
+    border-radius: 5px;
+    display: flex;
+  }
+  .mcourse .con {
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .con img {
+    width: 100%;
+    height: 100%;
+  }
+  .mcourse .tx {
+    padding: 30px;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
+<div class="head bg-dark text-white" style="height: 100px">
+  <h2><span style="float: right">My learnings</span></h2>
+</div>
+<section class="learning">
+  <br />
+
+  <div class="my-learning">
+    {% for orders in order%}
+    <div class="mcourse">
+      <div class="con">
+        <img
+          src="{{orders.course.display_image.url}}"
+          alt="{{orders.course.display_image}}"
+        />
+      </div>
+      <div class="tx">
+        <h4>{{orders.course.title}}</h4>
+        <a href="{%url 'lesson' orders.course.id%}" style="float: right"
+          >Proceed to lesson <i class="fa fa-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</section>
+{%endblock content%}

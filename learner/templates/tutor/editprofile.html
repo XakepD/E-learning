@@ -1,0 +1,42 @@
+{% extends 'tutor/base.html' %}{%load static%}{%block content%}
+<style>
+  input {
+    transform: rotateZ(0deg);
+    transition: all 1s ease;
+  }
+  input:hover {
+    margin-left: 2%;
+    border-radius: 0px 120px 120px 0px;
+  }
+</style>
+<div class="editp">
+  <div class="head bg-dark text-white">
+    <h2><span style="float: right">Edit Profile</span></h2>
+  </div>
+  <div class="container shadow prof">
+    <form method="post">
+      {%csrf_token%}
+      <label> Username:</label>
+      {{form.username}}<br />
+      <label> Email:</label>
+      {{form.email}}<br />
+      <label> password:</label>
+      {{form.password}}<br />
+      <label>First Name:</label>
+      {{form.first_name}}<br />
+      <label>Last Name:</label>
+      {{form.last_name}}<br />
+      <p style="display: none">{{dp.user}}</p>
+      <label>Profile Picture:</label>
+      {{dp.profile_picture}}
+      <br />
+      {{form.errors}}
+      <div class="dp"></div>
+      <br />
+      <button style="float: right; width: 100px" class="btn btn-dark">
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+{%endblock content%}
