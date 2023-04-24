@@ -1,0 +1,78 @@
+{% extends 'all/base.html' %}{%load static%}{% load widget_tweaks %}
+{%block body%}
+<style>
+  .head{
+    background-color: black;
+    width: 100%;
+    height: 100px;
+    padding: 10px 110px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+  .my-learning{
+    width: 100%;
+    padding: 30px 110px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .mcourse{
+min-width: 230px;
+max-width: 230px;
+  }
+  .con{
+    width: 100%;
+    height: 130px;
+  }
+  .con img{
+    width: inherit;
+    height: inherit;
+  }
+  .play{
+
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.452);
+    position: absolute;
+    height: inherit;
+    color: white;
+    width: inherit;
+    display: none;
+  }
+  .con:hover .play{
+display: flex;
+  }
+</style>
+<section class="learnings">
+  <div class="head">
+<h2 style="color: white;">My Learnings</h2>
+
+  </div>
+  
+  <div class="my-learning">
+    {% for orders in order%}
+    <div class="mcourse shadow-sm">
+       <a href="{%url 'lesson' orders.course.id%}"
+          >
+      <div class="con">
+        <div class="play animate__animated animate__zoomIn">
+          <i class="fa fa-play-circle fa-3x"></i>
+        </div>
+        <img
+          src="{{orders.course.display_image.url}}"
+          alt="{{orders.course.display_image}}"
+        />
+      </div></a>
+      <div class="tx">
+        <h4>{{orders.course.title}}</h4>
+        <a href="{%url 'lesson' orders.course.id%}"
+          >Proceed to lesson <i class="fa fa-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</section>
+{%endblock body%}

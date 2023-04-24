@@ -5,7 +5,7 @@ from ckeditor.fields import RichTextField
 from django.db.models import Avg
 from ckeditor_uploader.fields import RichTextUploadingField 
 import secrets
-
+from django.utils.timezone import now
 
 from .paystack import PayStack
 # Create your models here.
@@ -86,7 +86,7 @@ class Course(models.Model):
     categories = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     title = models.CharField(max_length=100)
     price = models.PositiveIntegerField()
-    discounted_price = models.PositiveIntegerField(null=True)
+    discounted_price = models.PositiveIntegerField(null=True, help_text='if no discount , just input the normal price')
     descrption = models.TextField(max_length=500, null=True)
     learning_objective_1 = models.CharField(max_length=500)
     learning_objective_2 = models.CharField(max_length=500)
@@ -149,6 +149,8 @@ class Cart(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    def __str__(self) :
+        return self.course.user.first_name  +" "+   self.course.user.last_name  
 class WishList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -211,3 +213,15 @@ class Testimonials(models.Model):
 class Coupon(models.Model):
     code = models.CharField(max_length=100)
     percent_off = models.PositiveIntegerField()
+class CourseMessage(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE )
+    start_message = models.TextField()
+    end_message = models.TextField()
+    def __str__(self):
+        return self.course
+class Message(models.Model):
+    sender = models.ForeignKey(User,on_delete=models.CASCADE,  related_name='sender')
+    receiver = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='receiver')
+    message = RichTextField()
+    date = models.DateTimeField(default=now, blank=True)
+    viewed = models.BooleanField(default=False)

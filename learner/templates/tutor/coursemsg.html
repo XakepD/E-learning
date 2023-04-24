@@ -1,5 +1,4 @@
-{% extends 'tutor/base.html' %}{%load static%}{%block body%} {% extends
-'tutor/base.html' %}{%load static%}{%block content%}
+{% extends 'tutor/base.html' %}{%load static%}{%block content%}
 <style>
   textarea {
     width: 100%;
@@ -11,41 +10,25 @@
 </style>
 <div class="editp">
   <div class="head bg-dark text-white">
-    <h2><span style="float: right">Add Course</span></h2>
+    <h2><span style="float: right">Edit Course Message</span></h2>
   </div>
   <div class="container shadow prof">
     <form method="post" enctype="multipart/form-data">
       {%csrf_token%}
-      <p style="display: none">{{course.user}}</p>
+      <p >{{form.course}}</p>
       <br />
-      <label>Category:</label>
-      {{course.categories}}<br />
-      <label>Title:</label>
-      {{course.title}}<br />
-      <label>Price:</label>
-      {{course.price}}<br />
-      <label>Discounted price:</label>
-      {{course.discounted_price}} {{course.discounted_price.help_text}}<br />
-      <label>Description:</label>
-      {{course.descrption}}
-
-      <br />
-      <label>learning objectives:</label>
-      {{course.learning_objective_1}}<br />
-      {{course.learning_objective_2}}<br />
-      {{course.learning_objective_3}}<br />
-      <label>Display Image:</label>
-      {{course.display_image}}<br />
-      {{course.errors}}
-
-      <br />
+      <label>Course Enroll message:</label>
+      {{form.start_message}}<br />
+      <label>Course Finish message:</label>
+      {{form.end_message}}<br />
+      
       <button style="float: right; width: 100px" class="btn btn-dark">
         Save
       </button>
     </form>
   </div>
 </div>
-{%endblock content%}
+
 
 <!--<form
   
@@ -77,4 +60,4 @@
 <script>
   $("input").addClass("input form-control")
 </script>
-{%endblock body%}
+{%endblock content%}

@@ -8,6 +8,11 @@
     margin-left: 2%;
     border-radius: 0px 120px 120px 0px;
   }
+  @media (max-width: 768px) {
+    .prof{
+      width: 100%;
+    }
+  }
 </style>
 <div class="editp">
   <div class="head bg-dark text-white">
@@ -20,18 +25,13 @@
       {{form.username}}<br />
       <label> Email:</label>
       {{form.email}}<br />
-      <label> password:</label>
-      {{form.password}}<br />
+    <b style="display: none;"> <label> password:</label>
+      {{form.password}}<br /></b> 
       <label>First Name:</label>
       {{form.first_name}}<br />
       <label>Last Name:</label>
       {{form.last_name}}<br />
-      <p style="display: none">{{dp.user}}</p>
-      <label>Profile Picture:</label>
-      {{dp.profile_picture}}
-      <br />
-      {{form.errors}}
-      <div class="dp"></div>
+      
       <br />
       <button style="float: right; width: 100px" class="btn btn-dark">
         Save

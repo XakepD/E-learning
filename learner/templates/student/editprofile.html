@@ -1,19 +1,37 @@
-{% extends 'student/base.html' %}{%load static%}{%block content%}
+{% extends 'all/base.html' %}{%load static%}{%block body%}
 <style>
-  input {
-    transform: rotateZ(0deg);
-    transition: all 1s ease;
-  }
-  input:hover {
-    margin-left: 2%;
-    border-radius: 0px 120px 120px 0px;
-  }
+
+
+  .prof {
+      
+        width: 100%;
+        padding: 30px 110px ;
+
+      }
+      .prof form {
+        display: flex;
+        flex-direction: column;
+      }
+        .prof label {
+    font-weight: 500;
+    color: #000;
+      }
+      .prof input {
+        height: 40px;
+        width: 60%;
+        border: solid 1px grey;
+        padding-left: 10px;
+      }
+      .head{
+        padding-left: 110px;
+      }
 </style>
+<br>
 <div class="editp">
-  <div class="head bg-dark text-white">
-    <h2><span style="float: right">Edit Profile</span></h2>
+  <div class="head ">
+    <h3><span >Edit Profile</span></h3>
   </div>
-  <div class="container shadow prof">
+  <div class=" shadow prof">
     <form method="post">
       {%csrf_token%}
       <label> Username:</label>
@@ -24,16 +42,11 @@
       {{form.first_name}}<br />
       <label>Last Name:</label>
       {{form.last_name}}<br />
-      <label>Profile Picture:</label>
-      {{dp.profile_picture}}
-      <br />
-      {{form.errors}}
-      <div class="dp"></div>
-      <br />
+     
       <button style="float: right; width: 100px" class="btn btn-dark">
         Save
       </button>
     </form>
   </div>
 </div>
-{%endblock content%}
+{%endblock body%}

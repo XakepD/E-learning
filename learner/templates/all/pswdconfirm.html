@@ -1,0 +1,54 @@
+   {%load static%}
+   <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'all/css/course.css' %}"
+    />
+
+<style>
+  .st input {
+    height: 40px;
+    width: 500px;
+    border: solid 1px;
+    padding-left: 10px;
+  }
+  .st{
+    border: solid 1px;
+    padding: 30px;
+  }
+  .st button {
+    width: 200px;
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #44203d;
+    border: none;
+  }
+  .set{
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  label{
+    color: black;
+  }
+</style>
+<div class="set">
+ 
+
+<div>
+   <h4><span>Password Confirm</span></h4>
+   <br>
+  <form method="post" class="st">
+    {% csrf_token %} {% for field in form%}
+    <div><label>{{field.label_tag}}</label><br> {{field}}</div>
+    <p style="color: red">{{field.errors}}</p>
+    {%endfor%}
+    <br>
+    <button>Submit</button>
+  </form>
+</div></div>
+

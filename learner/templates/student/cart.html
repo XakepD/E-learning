@@ -10,7 +10,7 @@
   }
 </style>
 <br />
-<h2 style="padding: 30px 110px; font-size: 30px">Shopping Cart</h2>
+<h2 >Shopping Cart</h2>
 <section class="cart">
   <div class="course-cart">
     <p style="font-weight: bold">Courses in cart</p>
@@ -48,7 +48,7 @@
           href="{%url 'cart' %}"
           >Remove</a
         >
-        <form action="/add-to-cart">
+        <!--<form action="/add-to-cart">
           <input type="hidden" name="course_id" value="{{item.course.id}}" />
           <button
             style="
@@ -62,7 +62,7 @@
           >
             <i class="fa fa-heart"></i>
           </button>
-        </form>
+        </form>-->
       </div>
       <div class="price">
         <p>

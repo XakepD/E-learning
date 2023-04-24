@@ -88,6 +88,28 @@
     <script src="{% static 'js/custom.js' %}"></script>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        $(".sidebar").css("display", "none")
+        $(".sidenav").css("display", "none")
+        $(window).resize(function () {
+          $(".sidebar").css("display", "none")
+          $(".sidenav").css("display", "none")
+        })
+      })
+      $("#op").click(function () {
+        $(".sidebar").css("display", "block")
+        $(".sidebar").css("display", "250px")
+      })
+      $("#sn").click(function () {
+        $(".sidenav").css("display", "block")
+        $(".sidenav").css("display", "250px")
+      })
+      $("#cl").click(function () {
+        $(".sidebar").css("display", "none")
+      })
+      $("#csn").click(function () {
+        $(".sidenav").css("display", "none")
+      })
       $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $(".can").owlCarousel({
@@ -100,8 +122,10 @@
           responsiveClass: true,
           responsive: {
             0: {
-              items: 2,
-              nav: true,
+              items: 1.7,
+              nav: false,
+              loop:true,
+             
             },
             600: {
               items: 3,
@@ -125,28 +149,7 @@
       text.addEventListener("mouseout", function () {
         text.querySelector(".tooltiptext").style.display = "none"
       })
-      document.addEventListener("DOMContentLoaded", function () {
-        $(".sidebar").css("width", "0px")
-        $(".sidenav").css("width", "0px")
-        $(window).resize(function () {
-          $(".sidebar").css("width", "0px")
-          $(".sidenav").css("width", "0px")
-        })
-      })
-      $("#op").click(function () {
-        $(".sidebar").css("display", "block")
-        $(".sidebar").css("width", "250px")
-      })
-      $("#sn").click(function () {
-        $(".sidenav").css("display", "block")
-        $(".sidenav").css("width", "250px")
-      })
-      $("#cl").click(function () {
-        $(".sidebar").css("width", "0px")
-      })
-      $("#csn").click(function () {
-        $(".sidenav").css("width", "0px")
-      })
+      
     </script>
   </body>
 </html>

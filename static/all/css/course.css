@@ -158,7 +158,7 @@
   top: 50%;
   background-color: rgb(9, 1, 17) !important;
   display: block;
-  padding: 0 0.3em !important;
+  padding: 0 5px 0 0 !important;
   font-size: 1.5em;
   margin: 0;
   margin-top: -165px !important;
@@ -168,6 +168,7 @@
   width: 40px;
   cursor: pointer;
   color: #fff;
+  border: solid 1px goldenrod !important;
   transform: translate(-50%, -50%) !important;
 }
 
@@ -179,7 +180,7 @@
   top: 50%;
   background-color: rgb(9, 1, 17) !important;
   display: block;
-  padding: 0 0.3em !important;
+  padding: 0 0 0 5px !important;
   font-size: 1.5em;
   margin: 0;
   margin-top: -165px !important;
@@ -189,6 +190,7 @@
   height: 40px;
   width: 40px;
   color: #fff;
+  border: solid 1px goldenrod !important;
   transform: translate(-50%, -50%) !important;
 }
 .tooltip-arrow,
@@ -199,7 +201,7 @@
 .tooltip-qm {
   float: left;
   margin: -2px 0px 3px 4px;
-  font-size: 12px;
+  font-size: 20px;
 }
 .tooltip-inner button {
   height: 40px;
@@ -230,6 +232,7 @@
   color: black;
   border-radius: 50%;
   font-size: 25px;
+
 }
 .tooltip-inner p {
   font-size: 11px;
@@ -259,17 +262,21 @@
 .tooltip-inner:hover .tooltip-inner,
 .tooltip-arrow:hover .tooltip-inner,
 .tooltip-qm:hover .tooltip,
-.tooltip-qm:hover .tooltip-inner {
-  visibility: visible;
-  opacity: 1;
+.tooltip-qm:hover .tooltip-inner ,
+.tooltip:hover ,
+.tooltip:hover .tooltip-inner{
+  visibility: visible !important;
+  opacity: 1 !important;
+display: flex;
 }
 
 .tooltip.show {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+  visibility: visible !important;
+  display: block !important;
 }
 .bs-tooltip-auto[x-placement^="bottom"] .arrow::before,
 .bs-tooltip-bottom .arrow::before {
@@ -299,11 +306,58 @@ ul {
   .cats {
     padding: 30px;
     display: block;
+   
   }
   .catt {
+    display: flex;
+    gap: 20px;
     margin-top: 20px;
+  }
+  .courses h3{
+    padding-left: 10px;
   }
   .nm {
     width: 100%;
   }
+  .owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-dot.owl-nav {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  background-color: rgb(9, 1, 17) !important;
+  display: none;
+  padding: 0 0.3em !important;
+  font-size: 1.5em;
+  margin: 0;
+  margin-top: -165px !important;
+  border-radius: 50%;
+  padding-top: 10px !important;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  color: #fff;
+  transform: translate(-50%, -50%) !important;
+}
+
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-dot.owl-nav {
+  position: absolute;
+  right: -35px;
+  top: 50%;
+  background-color: rgb(9, 1, 17) !important;
+  display: none;
+  padding: 0 0.3em !important;
+  font-size: 1.5em;
+  margin: 0;
+  margin-top: -165px !important;
+  cursor: pointer;
+  border-radius: 50%;
+  padding-top: 10px !important;
+  height: 40px;
+  width: 40px;
+  color: #fff;
+  transform: translate(-50%, -50%) !important;
+}
 }

@@ -10,10 +10,12 @@
   }
   .mcourse {
     width: 350px !important;
-    height: 150px !important;
-    border: solid;
-    border-radius: 5px;
+    min-height: 120px !important;
+
+  
+    border-radius: 10px;
     display: flex;
+    overflow: hidden;
   }
   .mcourse .con {
     width: 40%;
@@ -25,10 +27,20 @@
     height: 100%;
   }
   .mcourse .tx {
-    padding: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 10px !important;
   }
   a {
     text-decoration: none;
+  }
+  h1,h2,h3,h4{
+    font-weight: bold !important;
+  }
+  a{
+    font-size: 13px;
   }
 </style>
 <div class="head bg-dark text-white" style="height: 100px">
@@ -39,7 +51,7 @@
 
   <div class="my-learning">
     {% for orders in order%}
-    <div class="mcourse">
+    <div class="mcourse shadow-sm">
       <div class="con">
         <img
           src="{{orders.course.display_image.url}}"

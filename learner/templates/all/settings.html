@@ -1,10 +1,4 @@
-    {%load static%}
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'all/css/course.css' %}"
-    />
-
+{% extends 'all/base.html' %}{%load static%} {%block body %}
 <style>
   .st input {
     height: 40px;
@@ -35,12 +29,25 @@
   label{
     color: black;
   }
+  @media (max-width: 768px) {
+    .set{
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .set div{
+      width: 90%;
+
+    }
+    .st input{
+      width: 100%;
+    }
+  }
 </style>
 <div class="set">
  
 
 <div>
-   <h4><span>Reset Password</span></h4>
+   <h4><span>Change Password</span></h4>
    <br>
   <form method="post" class="st">
     {% csrf_token %} {% for field in form%}
@@ -51,4 +58,4 @@
     <button>Submit</button>
   </form>
 </div></div>
-
+{%endblock body%}

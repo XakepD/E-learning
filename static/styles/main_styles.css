@@ -52,7 +52,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   background: #fff5fd;
-  color: #a5a5a5;
+ 
 }
 div {
   display: block;
@@ -140,7 +140,7 @@ h6 {
   -webkit-font-smoothing: antialiased;
   -webkit-text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
   text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
-  color: #384158;
+  color: #212121;
   margin-bottom: 0;
 }
 h1::selection,

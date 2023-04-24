@@ -92,6 +92,9 @@
       font-family: "Poppins", sans-serif;
       font-size: 20px;
     }
+    .courses h3{
+      padding-left: 20px;
+    }
 
     .disp div img {
       width: 100%;
@@ -111,6 +114,14 @@
       gap: 40px;
       flex-wrap: wrap;
       background-color: var(--back);
+    }
+    .cats{
+      background-color: aqua;
+    }
+    .cat{
+      font-size: 14px;
+      min-width: 100px;
+      padding: 0 20px;
     }
   }
 </style>
@@ -221,8 +232,8 @@
 <section class="learning">
   <br />
   <h3>
-    Welome back, {{request.user.first_name}}<span style="float: right"
-      >My Learnings</span
+    Welome back, {{request.user.first_name}}<a href="#" style="float: right; font-weight: 500; font-size: 14px;"
+      >My Learnings</a
     >
   </h3>
 
@@ -451,6 +462,8 @@
       {%endfor%}
     </a>
   </div>
+
+  
 </section>
 
 <section class="cats">

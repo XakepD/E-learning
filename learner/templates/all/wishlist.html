@@ -1,0 +1,146 @@
+{% extends 'all/base.html' %}{%load static%}{%block body%}
+<br />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<style>
+  .tooltip-arrow,
+  .red-tooltip + .tooltip > .tooltip-inner {
+    background-color: #f00;
+  }
+
+  .tooltip-qm {
+    float: left;
+    margin: -2px 0px 3px 4px;
+    font-size: 12px;
+  }
+  .tooltip-inner button {
+    height: 40px;
+    min-width: 190px;
+    background-color: var(--black);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+  }
+  .tooltip-inner div {
+    display: flex;
+    gap: 10px;
+  }
+  .tooltip-inner div i {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    color: black;
+    border-radius: 50%;
+    font-size: 25px;
+  }
+  .tooltip-inner p {
+    font-size: 11px;
+    line-height: 20px;
+  }
+  .tooltip-inner li {
+    list-style: square;
+  }
+  .tooltip-inner {
+    min-width: 300px !important;
+    max-width: 300px !important;
+    height: 350px;
+    font-size: 12px;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    background: #ffffff;
+    color: rgba(0, 0, 0, 0.7);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.26);
+    text-align: left;
+    border: 0.2px solid grey;
+  }
+
+  .tooltip.show {
+    opacity: 1;
+  }
+
+  .bs-tooltip-auto[x-placement^="bottom"] .arrow::before,
+  .bs-tooltip-bottom .arrow::before {
+    border-bottom-color: #f00;
+    /* Red */
+  }
+  ul {
+    list-style: square;
+  }
+  .tooltip-inner b {
+    font-size: 11px;
+  }
+  .lay{
+    position: absolute;
+  }
+</style>
+<section class="courses">
+  <div class="nm" style="display: flex; justify-content: flex-start">
+    <h3>My Wishlist</h3>
+  </div>
+  <div class="course-container owl-theme owl-carousel can">
+    {%for courses in wish%}
+    <a href="{%url 'details' courses.course.id%}">
+      <div
+        class="course-box shadow red-tooltip owl-item"
+     
+      >
+        <div class="bx">
+         
+          <div class="course-image-container">
+
+            <img
+              src="{{courses.course.display_image.url}}"
+              alt="{{courses.course.display_image}}"
+            />
+          </div>
+
+          <div class="course-info-container">
+            <h5>{{courses.course.title}}</h5>
+            <h6>{{courses.course.user}}</h6>
+             
+            <h6>
+              <span
+                class="fa fa-star {% if courses.course.average_rating > 0 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if courses.course.average_rating > 1 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if courses.course.average_rating > 2 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if courses.course.average_rating > 3 %} checked {% endif %}"
+              ></span>
+              <span
+                class="fa fa-star {% if courses.course.average_rating > 4 %} checked {% endif %}"
+              ></span>
+              {{courses.course.average_rating}}
+            </h6>
+   
+            <p>
+              <b style="text-decoration: line-through">N</b> {{courses.course.price}}.00
+            </p>
+         <h6>{{courses.course.user}}</h6>
+          </div>
+
+        </div>
+      </div>
+
+      {%endfor%}</a
+    >
+  </div>
+</section>
+
+{%endblock body%}

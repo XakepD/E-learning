@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_view
 from .views import *
 from .forms import *
 urlpatterns = [
-    path('home', views.home, name ="home"),
+    path('', views.home, name ="home"),
     path('about', views.about, name ="about"),
     path('km', views.km, name ="km"),
     path('courses', views.Courseview, name ="courses"),
@@ -17,7 +17,9 @@ urlpatterns = [
     path('sections/<int:pk>', views.sectionadd, name='sections'), 
     path('catg/<slug:cslug>', views.catg, name='catg'), 
     path('delete/<int:pk>', views.deletecourse, name='delete'),
+    path('wish-delete/<int:pk>', views.deletewishlist, name='deletewish'),
     path('search', views.Filter.as_view(), name ="search"),
+    path('message/search', views.FilterMessage.as_view(), name ="searchm"),
     path('delete-content/<int:pk>/', delete_content, name='delete_content'),
     path('details/<int:pk>', views.Coursedetail.as_view(), name='details'),
     path('add-to-cart/', views.addtocart,name='add-to-cart'),
@@ -25,11 +27,16 @@ urlpatterns = [
     path('remove-item',views.removeitem),
     path('review/<int:pk>', views.Reviews, name='review'), 
 path('wishlist/', views.wishlist,name='wishlist'),
+path('learnings/', views.learnings,name='learnings'),
 
     path('tutor/courses', views.TutorCourseview, name ="tutorcourses"),
     path('tutor-dashboard', views.tutorboard, name ="tutorboard"),
     path('tutor/course-edit/<int:pk>', views.courseedit, name ="courseedit"),
     path('tutor/announcement', views.announcement, name ="announcement"),
+    path('messages/message/<int:pk>', views.message, name ="message"),
+     path('messages', views.messages, name ="messages"),
+     path('course/message/<int:pk>', views.Coursemessage.as_view(), name ="coursemessage"),
+      path('message/compose', views.compose, name ="compose"),
     path('tutor/announcements', views.announcements, name ="announcements"),
     path('tutor/profile', views.tutorprofile, name ="tprofile"),
     path('tutor/content/<int:pk>/', SectionUpdate.as_view(), name='content'),
@@ -53,14 +60,15 @@ path('wishlist/', views.wishlist,name='wishlist'),
     path('login', views.signin, name ="studentlogin"),
     path('logout', LogoutView.as_view(template_name='all/logout.html'),name='logout'),
     path('password-change', auth_view.PasswordChangeView.as_view(template_name='all/pswdchange.html', form_class= PasswordChangeForm, success_url='/password-change/complete'),name='pswdchange'),
-    path('tutor/password-change', auth_view.PasswordChangeView.as_view(template_name='tutor/pswdchange.html', form_class= PasswordChangeForm, success_url='tutor/password-change/complete'),name='tpswdchange'),
-    path('tutor/password-change/complete', auth_view.PasswordChangeDoneView.as_view(template_name='tutor/pswdc.html'),name='tpswdchangedone'),
+    path('settings/password-change', auth_view.PasswordChangeView.as_view(template_name='all/settings.html', form_class= PasswordChangeForm, success_url='settings/password-change/complete'),name='tpswdchange'),
+    path('settings/password-change/complete', auth_view.PasswordChangeDoneView.as_view(template_name='all/pswdc.html'),name='tpswdchangedone'),
+
     path('password-reset', auth_view.PasswordResetView.as_view(template_name='all/pswdreset.html', form_class= PasswordResetForm),name='pswdreset'),
-    path('password-reset/done', auth_view.PasswordResetDoneView.as_view(template_name='all/pswddone.html'),name='pswddone'),
-    path('password-reset-confirm/<uidb64>/<token>', auth_view.PasswordResetConfirmView.as_view(template_name='all/pswdconfirm.html', form_class = SetMyPasswordForm),name='pswdconfirm'),
-    path('password-reset-complete', auth_view.PasswordResetCompleteView.as_view(template_name='all/pswdcomplete.html'),name='pswdcomplete'),
-    path('', views.initiate_payment, name="initiate-payment"),
-    path('<str:ref>/', views.verify_payment, name="verify-payment"),
+    path('password-reset/done', auth_view.PasswordResetDoneView.as_view(template_name='all/pswddone.html'),name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>', auth_view.PasswordResetConfirmView.as_view(template_name='all/pswdconfirm.html', form_class = SetMyPasswordForm),name='password_reset_confirm'),
+    path('password-reset-complete', auth_view.PasswordResetCompleteView.as_view(template_name='all/pswdcomplete.html'),name='password_reset_complete'),
+    path('payment/', views.initiate_payment, name="initiate-payment"),
+    path('payment/<str:ref>/', views.verify_payment, name="verify-payment"),
     
 ]
 urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

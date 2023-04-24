@@ -1,0 +1,150 @@
+{% extends 'all/base.html' %}{%load static%}{% load widget_tweaks %}
+{%block body%}
+<style>
+  .message{
+    padding: 30px 110px;
+  }
+  .inbx{
+    display: flex;
+    border-top:solid 1px ;
+
+  }
+  .compose{
+    min-height: 500px;
+    border: solid 1px;
+    border-top: none;
+    background-color: rgb(242, 244, 247);
+    flex: 1;
+    padding: 10px;
+  }
+  .read{
+    flex: 2;
+    padding: 15px;
+  }
+  .msearch{
+    margin-top:10px ;
+    width: 100%;
+    border: solid 1px black;
+    background: white;
+  }
+  label{
+    font-size: 13px ;
+    color: black;
+  }
+  .msearch input{
+    height: 40px;
+    width: 80%;
+    padding-left: 15px;
+    background: white;
+    border: none;
+    outline: none;
+  }
+  .msearch button{
+    width: 18.9%;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: none;
+  }
+  .form{
+    display: flex;
+    flex-direction: column;
+
+  }
+    textarea {
+    width: 100%;
+    padding: 10px;
+  }
+  select {
+    height: 40px;
+    width: 200px;
+  } 
+  .messages{
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 0px;
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    .message{
+      padding: 30px;
+      
+    }
+    .inbx{
+      flex-direction: column;
+    }
+  }
+</style>
+<section class="message">
+  <h3>Messages</h3>
+  <p>You have {{msn}} unread messages </p>
+  <br>
+  <div class="inbx">
+    <div class="compose">
+      <a href="{%url 'compose'%}"><button style="width: 100px; height: 40px; background-color: transparent; border: solid 1px; font-weight: bold;">Compose</button></a>
+      
+      <div class="msearch">
+        <form method='get' action='{% url 'searchm' %}'>
+                <input type="search" name="searchm" id="searchm"   placeholder="search" >
+        <button><i class="fa fa-search"></i></button>
+        </form>
+        
+      </div><br>{%for messages in message%}
+      <a href="{%url 'message' messages.id %}">
+      <div class="messages" style="padding-left: 12px;
+                  padding-right: 12px; margin-bottom: 20px;">
+         <div
+                class="circle"
+                style="
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+                  gap: 10px;
+                  
+                  
+                "
+              >
+                <div
+                  class="circl"
+                  
+                  style="
+                    height: 40px;
+                    min-width: 40px;
+                    max-width: 40px;
+                    border-radius: 50%;
+                    background-color: black;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                ><b style="color: white; font-size: 18px;">{{ messages.sender.first_name|make_list|first}}{{messages.sender.last_name|make_list|first }}</b>
+              </div>
+               <span
+                  style="
+                    line-height: 16px !important;
+                    font-size: 12px;
+                    
+                    color: rgb(14, 13, 13);
+                  "
+                  ><b style="font-size: 14px;">{{messages.sender.first_name}} {{messages.sender.last_name}}</b>
+                  
+                </span>
+      </div>
+     <div style="padding:0px 60px;">
+       <p style="color: black;">{{messages.message | safe}}</p>
+     </div>
+      </div>
+      </a>
+      {%endfor%}
+      
+    </div>
+    <div class="read">
+      <center>
+ <p> Click on message to read here</p>
+      </center>
+     
+    </div>
+  </div>
+</section>
+
+{%endblock body%}

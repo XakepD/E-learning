@@ -17,3 +17,6 @@ admin.site.register(WishList)
 admin.site.register(CourseContent)
 admin.site.register(Testimonials)
 admin.site.register(Coupon)
+admin.site.register(CourseMessage)
+admin.site.register(Message)
+

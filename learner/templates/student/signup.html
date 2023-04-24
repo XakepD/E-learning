@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Signup</title>
 
     <link rel="stylesheet" href='{% static "stude nt/css/form.css" %}' />
@@ -15,6 +19,7 @@
       body {
         margin: 0;
         top: 0;
+        overflow: hidden;
       }
       .wrap {
         width: 100%;
@@ -116,14 +121,17 @@
         .infowrap {
           display: none;
         }
+        body{
+           background: url("../../../static/images/cat-4.jpg");
+        }
         .wrap {
-          background: url("../../../static/images/cat-4.jpg");
+         background: transparent;
           height: 100%;
           width: 100%;
         }
         .formwrap {
           background-color: rgba(255, 255, 255, 0.692);
-          height: 95%;
+          height: 75%;
           width: 90%;
           backdrop-filter: blur(5px);
           display: flex;
@@ -137,8 +145,15 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding: 30px;
+          padding: 10px;
         }
+      h3{
+        font-weight: bold !important;
+        font-size: 16px !important;
+      }
+      label{
+        font-weight: bold;
+      }
       }
     </style>
   </head>
@@ -146,7 +161,7 @@
     <div class="wrap1 wrap">
       <div class="formwrap">
         <form method="post" class="form1">
-          <h3>Join us!</h3>
+          <h3 style="font-weight: bold !important;">Join us!</h3>
           <div class="inform">
             {% csrf_token %} {% for field in form %}<span
               >{{ field.label_tag }}<br />

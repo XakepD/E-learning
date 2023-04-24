@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm,UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm,UserChangeForm, PasswordResetForm
 from django.contrib.auth.models import User
 from . models import *
 from django import forms
@@ -12,7 +12,10 @@ class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
-
+class MessageForm(forms.ModelForm):
+     class Meta:
+          model = Message
+          fields = '__all__'
 class ProfileForm(UserChangeForm):
      class Meta:
           model = User
@@ -45,7 +48,10 @@ class ContentForm(forms.ModelForm):
     class Meta:
         model = CourseContent
         fields = '__all__'
-
+class CourseMessageForm(forms.ModelForm):
+     class Meta:
+          model = CourseMessage
+          fields = '__all__'
 class AnnouncementForm(forms.ModelForm):
      class Meta:
           model = CourseAnnoucement
@@ -66,7 +72,7 @@ class PasswordChangeForm(PasswordChangeForm):
      new_password1 = forms.CharField()
      new_password2 = forms.CharField()
 
-class PasswordResetForm(PasswordChangeForm):
+class PasswordResetForm(PasswordResetForm):
      email = forms.EmailField()
 
 class SetMyPasswordForm(SetPasswordForm):

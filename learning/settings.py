@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-i=^x85=913vo%1onc=u9d2@aee4r!lr4sd%jobyeq!%#5g#x7j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','192.168.43.20']
+ALLOWED_HOSTS = ['*','192.168.0.172']
 
 
 # Application definition
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'jquery',
     'djangoformsetjs',
     'ckeditor_uploader',
+   
     
 ]
 
@@ -166,7 +167,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "EEA",
     "site_icon": "images/eea-logon.png",
     # Add your own branding here
-    "site_logo": None,
+    "site_logo": "images/eea-logon.png",
     "welcome_sign": "Welcome to the EEA",
     # Copyright on the footer
     "copyright": "Elites Enterpreneurs Academy",

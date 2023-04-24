@@ -1,9 +1,10 @@
 .tab-content input,
 textarea {
-  background-color: #343a40 !important;
+  background-color: #44203d !important;
   color: white !important;
   border: none !important;
 }
+
 
 .select2-container--default
   .select2-selection--single
@@ -12,7 +13,7 @@ textarea {
 }
 
 brand-link navbar-success:hover {
-  background-color: #00bc8c !important;
+  background-color: #44203d !important;
 }
 
 #id_tags {

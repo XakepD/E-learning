@@ -14,14 +14,14 @@
               <!-- Footer About -->
               <div class="footer_section footer_about">
                 <div class="footer_logo_container">
-                  <a href="#">
-                    <div class="footer_logo_text">E-learn<span>ing</span></div>
+                  <a href="{%url 'home'%}">
+                    <img src="{%static 'images/eef.png' %}" alt="eef" style="height: 60px;"/>
                   </a>
                 </div>
                 <div class="footer_about_text">
-                  <p>
+                 <!-- <p>
                     Lorem ipsum dolor sit ametium, consectetur adipiscing elit.
-                  </p>
+                  </p>-->
                 </div>
                 <div class="footer_social">
                   <ul>
@@ -32,7 +32,7 @@
                     </li>
                     <li>
                       <a href="#"
-                        ><i class="fa fa-google-plus" aria-hidden="true"></i
+                        ><i class="fa fa-google" aria-hidden="true"></i
                       ></a>
                     </li>
                     <li>
@@ -55,21 +55,21 @@
               <div class="footer_section footer_contact">
                 <div class="footer_title">Contact Us</div>
                 <div class="footer_contact_info">
-                  <ul>
-                    <li>Email: davidexadewole59@gmail.com</li>
-                    <li>Phone: +(234) 7063460678</li>
+                  <ul style="text-decoration: none;">
+                    <li>Email: academy@een.ng</li>
+                    
                     <li>Akure, Nigeria</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-3 footer_col">
+            <div class="col-lg-6 footer_col">
               <!-- Footer links -->
               <div class="footer_section footer_links">
                 <div class="footer_title">All</div>
                 <div class="footer_links_container">
-                  <ul>
+                  <ul style="text-decoration: none !important;">
                     <li><a href="{%url 'home'%}">Home</a></li>
                     <li><a href="{%url 'courses'%}">Courses</a></li>
                     <li>Categories</li>

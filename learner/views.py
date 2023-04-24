@@ -27,6 +27,13 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token  
 from django.contrib.auth.models import User  
 from django.core.mail import EmailMessage  
+from django.core.mail import send_mail, BadHeaderError
+from django.template.loader import render_to_string
+
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+
+
 
 
 """def signup(request):  
@@ -79,7 +86,7 @@ def about(request):
     popular = Course.objects.all()[:8]
     cat = Category.objects.all()
     tstm = Testimonials.objects.all()
-    
+    item = Cart.objects.filter(user= request.user)
     if request.user.is_authenticated:
           order = Order.objects.filter(user=request.user)
           cartitems = len(Cart.objects.filter(user= request.user))
@@ -93,10 +100,13 @@ def home(request):
     popular = Course.objects.all()[:8]
     cat = Category.objects.all()
     allc = Course.objects.all()
+    
     num_entities = Course.objects.all().count()
     rand_entities = random.sample(range(num_entities), 3)
     samp = Course.objects.filter(id__in=rand_entities)
     if request.user.is_authenticated:
+          item = Cart.objects.filter(user= request.user)
+          wish = WishList.objects.filter(user=request.user)[:3]
           order = Order.objects.filter(user=request.user)
           cartitems = len(Cart.objects.filter(user= request.user))
           w = len(WishList.objects.filter(user=request.user))
@@ -146,7 +156,7 @@ def signin(request):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
+				
 				return redirect("home")
 			else:
 				messages.error(request,"Invalid username or password.")
@@ -156,17 +166,24 @@ def signin(request):
 	return render(request=request, template_name="student/login.html", context={"login_form":form})
 def cat(request):
      cat = Category.objects.all()
-     return render(request, 'all/header.html', {'cat':cat})
+     if request.user.is_authenticated:
+          order = Order.objects.filter(user=request.user)
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
+     return render(request, 'all/header.html', locals())
 def Courseview(request):
         cartitems = 0
         
         cat = Category.objects.all()
         if request.user.is_authenticated:
+          item = Cart.objects.filter(user= request.user)[:4]
+            
+          wish = WishList.objects.filter(user=request.user)[:3]
           cartitems = len(Cart.objects.filter(user= request.user))
           w = len(WishList.objects.filter(user=request.user))
         courses = Course.objects.all()
         context = {'courses':courses, 'cartitems':cartitems, 'cat':cat}
-        return render(request, 'all/courses.html', context)
+        return render(request, 'all/courses.html', locals())
 class Coursedetail(View):
     
     def get(self, request, pk):
@@ -184,23 +201,97 @@ class Coursedetail(View):
        if request.user.is_authenticated:
           cartitems = len(Cart.objects.filter(user= request.user))
           w = len(WishList.objects.filter(user=request.user))
+          item = Cart.objects.filter(user= request.user)[:4]
+            
+          wish = WishList.objects.filter(user=request.user)[:3]
        course = Course.objects.get(pk=pk)
 
        return render (request, 'all/details.html', locals())
 class Filter(View):
       def get(self, request):
             cat = Category.objects.all()
+            
             search = request.GET['search']
             courses = Course.objects.filter(title__contains = search ) | Course.objects.filter(categories__title__contains = search )
+            if request.user.is_authenticated:
+                 order = Order.objects.filter(user=request.user)
+                 cartitems = len(Cart.objects.filter(user= request.user))
+                 w = len(WishList.objects.filter(user=request.user))
+                 item = Cart.objects.filter(user= request.user)[:4]
+            
+                 wish = WishList.objects.filter(user=request.user)[:3]
             return render(request, 'all/filter.html', locals())
-
+class FilterMessage(View):
+      def get(self, request):
+            cat = Category.objects.all()
+            
+            searchm = request.GET['searchm']
+            message = Message.objects.filter(sender__first_name__contains = searchm ) | Message.objects.filter(sender__last_name__contains = searchm ) | Message.objects.filter(message__contains = searchm )
+            if request.user.is_authenticated:
+                 item = Cart.objects.filter(user= request.user)[:4]
+            
+                 wish = WishList.objects.filter(user=request.user)[:3]
+                 order = Order.objects.filter(user=request.user)
+                 cartitems = len(Cart.objects.filter(user= request.user))
+                 w = len(WishList.objects.filter(user=request.user))
+            return render(request, 'all/messagesearch.html', locals())
+def message(request , pk):
+     user = request.user
+     thismessage = Message.objects.get(pk=pk) 
+     message = Message.objects.filter(receiver__user__id = user.id)
+     
+     msn = len(message)
+     if request.user.is_authenticated:
+          order = Order.objects.filter(user=request.user)
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
+          item = Cart.objects.filter(user= request.user)[:4]
+            
+          wish = WishList.objects.filter(user=request.user)[:3]
+     
+     return render(request, 'all/message.html', locals())
+def messages(request):
+     user = request.user
+     message = Message.objects.filter(receiver__user__id = user.id)
+     
+     msn = len(message)
+     if request.user.is_authenticated:
+          order = Order.objects.filter(user=request.user)
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
+          item = Cart.objects.filter(user= request.user)[:4]
+            
+          wish = WishList.objects.filter(user=request.user)[:3]
+    
+     return render(request, 'all/messages.html', locals())
+def compose(request):
+     user = request.user
+     form = MessageForm(initial={'sender':request.user})
+     message = Message.objects.filter(receiver__user__id = user.id)
+     
+     msn = len(message)
+     if request.user.is_authenticated:
+          order = Order.objects.filter(user=request.user)
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
+          item = Cart.objects.filter(user= request.user)[:4]
+            
+          wish = WishList.objects.filter(user=request.user)[:3]
+     if request.method == 'POST':
+          form = MessageForm(request.POST)
+          if form.is_valid():
+               form.save()
+               return redirect('message')
+     return render(request, 'all/compose.html', locals())
 @login_required(login_url='studentlogin')
 def addtocart(request):
       user= request.user
       course_id = request.GET.get('course_id')
       course = Course.objects.get(id = course_id)
       cart = Cart.objects.filter(user=user)
-      
+      wish = get_object_or_404(WishList, course__id=course_id).delete()
+
+           
       if course.price == 0 :
         Order(user=user, course=course).save()
         return redirect('home')
@@ -216,7 +307,8 @@ def addtocart(request):
 @login_required(login_url='studentlogin')
 def showcart(request):
       cartitems = 0
-      
+      item = Cart.objects.filter(user= request.user)
+      wish = WishList.objects.filter(user=request.user)[:3]
       cat = Category.objects.all()
       if request.user.is_authenticated:
           cartitems = len(Cart.objects.filter(user= request.user))
@@ -318,6 +410,18 @@ def courseupload(request):
         messages.success(request, "course  Added Sucessfully !!")    
         return redirect('tutorcourses')
     return render(request, "tutor/courseupload.html", {'course':course, 'user': user})
+class Coursemessage(View):
+     def get(self, request, pk):
+          course = Course.objects.filter(user = request.user)[:2]
+          form = CourseMessageForm(initial={"course":course})
+          return render(request, "tutor/coursemsg.html", locals())
+     def post(self, request):
+          form = CourseMessageForm(request.POST, request.FILES)
+          if form.is_valid():
+               form.save()
+          return redirect ('tutorcourse')
+               
+     
 def courseedit(request,pk):
     cours= Course.objects.get(pk=pk)
     course = CourseForm(instance=cours)
@@ -342,13 +446,13 @@ def review(request):
 def tutorprofileedit(request):
       profile = User.objects.get(username=request.user)
       form = ProfileForm(instance=profile)
-      dp = DpForm(initial={'user':request.user})
+     
       user = request.user
       if request.method =='POST':
             
             form = ProfileForm(request.POST or None , instance=profile)
-            dp = DpForm(request.POST)
-            if form.is_valid() | dp.is_valid():
+            
+            if form.is_valid():
                   form.save()
                   
                   
@@ -495,23 +599,33 @@ def tutorprofile(request):
 def profileedit(request):
       profile = User.objects.get(username=request.user)
       form = ProfileForm(instance=profile)
-      dp = DpForm()
+      item = Cart.objects.filter(user= request.user)
+      wish = WishList.objects.filter(user=request.user)[:3]
+   
       user = request.user
+      if request.user.is_authenticated:
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
       if request.method =='POST':
             
             form = ProfileForm(request.POST or None , instance=profile)
-            dp = DpForm(request.POST)
-            if form.is_valid() & dp.is_valid():
+           
+            if form.is_valid() :
                   form.save()
-                  dp.save()
+                 
                   
-                  return redirect('tutorboard')
+                  return redirect('profile-edit')
                   
       return render(request, 'student/editprofile.html', locals())
 
 def deletecourse(request, pk):
     course = get_object_or_404(Course, pk=pk).delete()
     return redirect('tutorcourses')
+
+def deletewishlist(request, pk):
+    course = get_object_or_404(WishList, course__id=pk).delete()
+    return redirect('wishlist')
+
 
 
 
@@ -544,10 +658,26 @@ class Contentadd(CreateView):
 """
 
 def studentprofile(request):
+     item = Cart.objects.filter(user= request.user)
+     wish = WishList.objects.filter(user=request.user)[:3]
+     if request.user.is_authenticated:
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
      return render(request, 'student/profile.html')
 def studentcourses(request):
      order = Order.objects.filter(user=request.user)
+     if request.user.is_authenticated:
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
      return render(request, 'student/courses.html', locals())
+def learnings(request):
+     item = Cart.objects.filter(user= request.user)
+     wish = WishList.objects.filter(user=request.user)[:3]
+     order = Order.objects.filter(user=request.user)
+     if request.user.is_authenticated:
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
+     return render(request, 'student/learnings.html', locals())
 
 def addtowish(request):
       user= request.user
@@ -559,19 +689,34 @@ def addtowish(request):
       return redirect('details', pk=course_id)
 
 def wishlist(request):
-     latest = WishList.objects.filter(user=request.user)
-     return render(request, 'student/wishlist.html', locals())
+     wishl = WishList.objects.filter(user=request.user)
+     cat = Category.objects.all()
+     item = Cart.objects.filter(user= request.user)
+     wish = WishList.objects.filter(user=request.user)[:3]
+     if request.user.is_authenticated:
+          order = Order.objects.filter(user=request.user)
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
+     return render(request, 'all/wishlist.html', locals())
 def studentdashboard(request):
      return render(request, 'student/dashboard.html')
 def catg(request,cslug):
+     
      cat = Category.objects.all()
      catg = Category.objects.get(slug=cslug)
      catuse = get_object_or_404(Category, slug=cslug)
      courses = Course.objects.filter(categories=catuse)
+     if request.user.is_authenticated:
+          cartitems = len(Cart.objects.filter(user= request.user))
+          w = len(WishList.objects.filter(user=request.user))
+          item = Cart.objects.filter(user= request.user)[:4]
+            
+          wish = WishList.objects.filter(user=request.user)[:3]
      return render(request,'all/catg.html', locals())
 def initiate_payment(request: HttpRequest) -> HttpResponse:
     cartitems = 0
-    
+    item = Cart.objects.filter(user= request.user)
+    wish = WishList.objects.filter(user=request.user)[:3]
     if request.user.is_authenticated:
           cartitems = len(Cart.objects.filter(user= request.user))
           w = len(WishList.objects.filter(user=request.user))

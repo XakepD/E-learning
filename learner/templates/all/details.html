@@ -14,11 +14,14 @@
   }
   .oth {
     padding: 30px 110px;
+    display: flex;
+    flex-direction: column;
+    
   }
   .obj {
     padding: 15px;
     border: 1px solid grey;
-    width: 500px;
+    width: 100%;
   }
   .checked {
     color: orange;
@@ -30,8 +33,9 @@
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.342);
     background: white;
     width: 300px;
-    height: 300px;
-    padding-bottom: 20px;
+    height: 100%;
+    
+    
   }
   .add img {
     width: 300px;
@@ -48,6 +52,30 @@
   }
   button {
     cursor: pointer !important;
+  }
+  @media (max-width: 768px) {
+    .oth{
+      padding: 30px;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .det1{
+      width: 100%;
+     
+    }
+    .dets{
+ padding: 30px 30px;
+    }
+    .add{
+      display: none;
+      
+    }
+    .obj{
+      box-sizing: border-box;
+    }
+    
   }
 </style>
 <br />
@@ -89,17 +117,39 @@
         By {{course.user.first_name}} {{course.user.last_name}}
       </p>
     </div>
-    <div class="add">
+    <div class="add" style="text-align: center;">
       <img src="{{course.display_image.url}}" alt="{{course.display_image}}" />
-      <div class="price">
-        {%if course.price > 0 %}
-        <h3>
+       {%if course.price > 0 %}
+        <h3 style="padding: 10px;">
           <span style="text-decoration: line-through">N</span> {{course.price}}
         </h3>
         {%else%}
         <h3>FREE</h3>
         {%endif%}
-        <br />
+    </div>
+  </div>
+  <div class="oth">
+    <div class="obj">
+      <label style="font-weight: bold; font-size: 20px; color: black"
+        >Learning Objectives</label
+      >
+      <ul style="padding-left: 30px">
+        <li>
+          {{course.learning_objective_1}} Be able to build ANY website you want.
+        </li>
+        <li>
+          {{course.learning_objective_2}} Master backend development with Django
+          and Python
+        </li>
+        <li>
+          {{course.learning_objective_3}} Build fully-fledged websites and web
+          apps for your startup or business.
+        </li>
+      </ul>
+       
+    </div>
+  </div>
+  <div class="price" style="padding: 30px 110px;">
         <div class="bt" style="display: flex; gap: 10px">
           {%if a == 'out'%}
           <form action="/add-to-cart">
@@ -147,71 +197,5 @@
           {%endif%}
         </div>
       </div>
-    </div>
-  </div>
-  <div class="oth">
-    <div class="obj">
-      <label style="font-weight: bold; font-size: 20px; color: black"
-        >Learning Objectives</label
-      >
-      <ul style="margin-left: 30px">
-        <li>
-          {{course.learning_objective_1}} Be able to build ANY website you want.
-        </li>
-        <li>
-          {{course.learning_objective_2}} Master backend development with Django
-          and Python
-        </li>
-        <li>
-          {{course.learning_objective_3}} Build fully-fledged websites and web
-          apps for your startup or business.
-        </li>
-      </ul>
-        {%if a == 'out'%}
-          <form action="/add-to-cart">
-            <input type="hidden" name="course_id" value="{{course.id}}" />
-            <button
-              style="
-                font-weight: bold;
-                font-size: 14px;
-                color: white;
-                width: 210px;
-                height: 40px;
-                background-color: var(--black);
-                border: none;
-                cursor: pointer;
-              "
-            >
-              Add to cart
-            </button>
-          </form>
-          <form action="/add-to-wish">
-            <input type="hidden" name="course_id" value="{{course.id}}" />
-            <button
-              style="
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                border: 1px solid var(--black);
-                font-size: 25px;
-                background-color: transparent;
-              "
-            >
-              <i class="fa fa-heart"></i>
-            </button>
-          </form>
-
-          {%else%}
-          <form>
-            <input
-              type="button"
-              class="btn btn-warning"
-              disabled
-              value="You Already own this course"
-            />
-          </form>
-          {%endif%}
-    </div>
-  </div>
 </section>
 {%endblock body%}

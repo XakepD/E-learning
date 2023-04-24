@@ -10,33 +10,9 @@
   --blu: linear-gradient(to right, rgb(22, 105, 212), rgb(212, 6, 75));
   --pink: #f56c6c;
 }
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #ffffff;
-  min-width: 200px;
-  text-align: left;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 0px;
-  z-index: 101;
-  margin-left: -100px;
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
-}
-
-.dropdown:hover .dropdown-content {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close */
 }
 .logout {
   width: 100%;
@@ -49,15 +25,7 @@
   color: #ffffff;
   cursor: pointer;
 }
-.dropdown-content a {
-  color: var(--black);
-  font-weight: 400;
-  width: 100%;
-  padding: 5px 0px;
-}
-.dropdown-content a:hover {
-  color: var(--pink);
-}
+
 .logout:hover {
   background-color: rgb(255, 255, 255);
   color: var(--black);
@@ -92,6 +60,11 @@ align-items: center;
   height: 80px;
   
 }
+.dropdown{
+  font-weight: 400;
+  
+}
+hr { margin: 10px 0 10px 0 !important; }
 header .left,
 header .right {
   flex: 1;
@@ -106,7 +79,7 @@ header .center {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 80px;
+  gap: 20px;
   box-sizing: border-box;
 }
 header a {
@@ -122,16 +95,17 @@ header a:hover {
   height: 50px;
 }
 header .search {
-  width: 34%;
+  width: 150px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  height: 30px;
-  border: 1px solid;
-  border-radius: 40px;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 5px;
   box-sizing: border-box;
   overflow: hidden;
-  margin-top: 10px;
+  transition: all 1s ease;
+
 }
 header .links {
   display: flex;
@@ -139,26 +113,51 @@ header .links {
   align-items: center;
   gap: 40px;
 }
+.searchform input{
+  width: 100px;
+  height: 0px;
+}
 button {
   cursor: pointer;
 }
+.cartsitems{
+  display: flex;
+  gap: 20px;
+   padding: 10px;
+}
+.cartsitems img{
+  width: 100px !important;
+  height: 60px !important;
+ 
+}
 header input {
-  flex: 3;
+  width: 100px;
   height: inherit;
   outline: none;
   padding-left: 20px;
   font-size: 14px;
   border: none;
+  transition: all .5s ease;
 }
 header .search button {
-  height: 40px;
-  flex: 1;
+  height: inherit;
+  width: 50px;
   color: white;
   background-color: var(--black);
   font-weight: bold;
   transition: all 1s ease;
   border: none;
+  
 }
+input:focus{
+  width: 150px;
+}
+.search:hover,
+
+.search:active{
+  width: 200px;
+}
+
 .right button {
   height: 40px;
   flex: 1;
@@ -170,26 +169,23 @@ header .search button {
   transition: all 1s ease;
   font-size: 14px;
 }
-.lnk {
-  display: flex;
-  flex-direction: column;
-  padding-left: 20px;
-  border-bottom: solid 1px grey;
-  border-top: solid 1px grey;
-  width: 100%;
-
+.dropdown-menu{
+  border-top:5px solid var(--black) ;
 }
 .lnk a {
   text-decoration: none;
   color: black;
   border-bottom: none;
   width: 100%;
-  font-size: 14px;
+  font-size: 13px;
   padding: 10px 5px;
-  font-weight: 500;
+    padding-left: 20px;
+  
+  font-weight: 400;
 }
 .lnk a:hover {
   background: none;
+  color: var(--pink);
 }
 header button:hover {
   background: var(--black);
@@ -222,33 +218,56 @@ header button:hover {
   }
   .sidebar {
     height: 100vh;
-    width: 0px;
+    width: 250px;
     position: fixed;
     background-color: white;
     transition: all 1s ease;
     overflow: hidden;
+
     z-index: 101;
+  }
+  .circ{
+    background-color: white;
+    display: flex;
+    height: 50px;
+    width: 50px;
+    font-weight: bold;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 200px;
+    border-radius: 50%;
+    color: black;
+    box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.123);
+cursor: pointer;
   }
   .sidenav {
     height: 100vh;
-    width: 0px;
+    width: 250px;
+
     right: 0;
     position: absolute;
     background-color: black;
     transition: all 1s ease;
     z-index: 102;
   }
-  .lnk {
+  .lnnk {
     padding-left: 30px;
-    
+    font-weight: 500;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
   }
-  .lnk a {
+  .lnnk a {
     font-size: 15px;
     font-weight: 500;
+    color: black;
+
   }
-  .lnk a:hover {
+  .lnnk a:hover {
     color: grey;
   }
+  hr { margin: 10px 0 10px 0 !important; }
   .header{
     padding: 0px 5px;
   }
@@ -263,6 +282,21 @@ header button:hover {
   padding: 2px 100px;
   gap: 40px;
 }
+.lnnk {
+    padding-left: 30px;
+    font-weight: 500;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  .lnnk a {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 8px;
+  }
+  .lnnk a:hover {
+    color: grey;
+  }
    </style>
    <div class="ann">
     <h5 style="color: white; font-weight: 500;">Have any questions?</h5>
@@ -274,20 +308,29 @@ header button:hover {
           <img src="{% static 'images/eea-logo.png' %}" alt="eea-logo"/>
         </div>
         <div class="center">
+           <form class="search" method='get' action='{% url 'search' %}'>
+                <input type="search" name="search" id="search"   placeholder="search" >
+               
+                <button  type="submit">
+                <span class="fa fa-search form-control-feedback"></span>
+                </button>
+                </form>
           <div class="links">
             <a href="{%url 'home' %}">Home</a>
 
             <a href="{%url 'courses' %}">Courses</a>
             <a href="{%url 'courses' %}">About</a>
             <div class="dropdown" >
-              <a style="height: 100%;">Categories <i class="fa fa-caret-down"></i> </a>
-              <div class="dropdown-content" ">
+              <a style="height: 80px ; display: flex; align-items: center; justify-content: center;" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" data-hover="dropdown">Categories
+               </a>
+              <div class="dropdown-menu animate__animated animate__zoomIn" aria-labelledby="dropdownMenuButton" style="min-width: 200px; margin-left: -70px;">
                 {%for cats in cat%}
-                <a
+                <a class="dropdown-item"
                   style=" padding: 5px 15px"
                   href="{%url 'catg' cats.slug%}"
                   >{{cats.title}}
                 </a>
+                <div class="dropdown-divider"></div>
 
                 {%endfor%}
               </div>
@@ -301,7 +344,9 @@ header button:hover {
           <a href="{%url 'studentlogin' %}"><button>SignIn</button></a>
           <a href="{%url 'studentsignup' %}"><button>SignUp</button></a>
           {%else%}
-          <a href="{%url 'wishlist' %}">
+          <div  class="dropdown" >
+          <a href="{%url 'wishlist' %}" style="transform: scale(1); height: 80px ; display: flex; align-items: center; justify-content: center;" 
+              type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i
               class="fa-regular fa fa-heart"
               style="transform: scale(1.3)"
@@ -311,19 +356,58 @@ header button:hover {
               ><sup><b>{{w}}</b></sup></span
             ></a
           >
-          <a href="{%url 'cart' %}">
+          <div class="dropdown-menu animate__animated animate__zoomInDown" aria-labelledby="dropdownMenuButton" style="  min-width: 300px;  margin-left: -160px; padding: 20px 15px;">
+           
+          {%for items in wish %}
+          <div class="cartsitems">
+             <img src="{{items.course.display_image.url}}" alt="" />
+             <div>
+              <h6 style="font-size: 12px;">{{items.course.title}}</h6>
+              <p style="font-size: 10px;">{{items.course.user.first_name}} {{items.course.user.last_name}}</p>
+        <p style="font-weight: bold; margin-top: -15px; color: black; font-size: 12px;">N {{items.course.price}}</p>
+             </div>
+          </div>
+          <a href="{%url 'cart' %}"><button style="width: 100%; height: 40px; border: solid 1px; border-radius: 0px; background-color: transparent;"> Add to cart</button></a>
+          <div class="dropdown-divider"></div>
+          {%endfor%}
+          <a href="{%url 'wishlist' %}"><button style="width: 100%; height: 40px; border: solid 1px; border-radius: 0px; background-color: black; color: white;"> Go to wishlist</button></a>
+          </div>
+          </div>
+          
+          <div  class="dropdown" >
+          <a href="{%url 'cart' %}" style="transform: scale(1); height: 80px ; display: flex; align-items: center; justify-content: center;" 
+              type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i
-              class="fa fa-shopping-cart"
+              class="fa fa-shopping-cart "
               style="transform: scale(1.3)"
-              aria-hidden="true"
+              
             ></i
             ><span style="font-size: 15px; margin-left: 2px"
               ><sup><b>{{cartitems}}</b></sup></span
             ></a
           >
+          <div class="dropdown-menu animate__animated animate__zoomInDown" aria-labelledby="dropdownMenuButton" style="  min-width: 300px;  margin-left: -160px; padding: 20px 15px;">
+           
+          {%for items in item %}
+          <a href="{%url 'details' items.course.id%}">
+            <div class="cartsitems">
+             <img src="{{items.course.display_image.url}}" alt="" />
+             <div>
+              <h6 style="font-size: 12px;">{{items.course.title}}</h6>
+              <p style="font-size: 10px;">{{items.course.user.first_name}} {{items.course.user.last_name}}</p>
+        <p style="font-weight: bold; margin-top: -15px; color: black; font-size: 12px;">N {{items.course.price}}</p>
+             </div>
+          </div>
+      </a>
+          
+          <div class="dropdown-divider"></div>
+          {%endfor%}
+          </div>
+          </div>
           <div class="dropdown">
-            <i class="fa fa-user-circle" style="transform: scale(1.3)"></i>
-            <div class="dropdown-content" style="padding-top: 20px">
+            <i class="fa fa-user-circle dropdown-toggle" style="transform: scale(1.4); height: 80px ; display: flex; align-items: center; justify-content: center;" 
+             type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <div class="dropdown-menu animate__animated animate__zoomInDown" aria-labelledby="dropdownMenuButton" style="margin-left: -120px;  min-width: 200px;">
               <div
                 class="circle"
                 style="
@@ -332,55 +416,56 @@ header button:hover {
                   align-items: center;
                   gap: 10px;
                   padding-left: 12px;
+                  padding-right: 12px;
+                  
                 "
               >
                 <div
-                  class="circ"
+                  class="circl"
+                  
                   style="
                     height: 40px;
                     min-width: 40px;
                     max-width: 40px;
                     border-radius: 50%;
                     background-color: black;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                   "
-                ></div>
+                ><b style="color: white; font-size: 18px;">{{ request.user.first_name|make_list|first}}{{request.user.last_name|make_list|first }}</b>
+              </div>
                 <span
                   style="
-                    line-height: 14px !important;
+                    line-height: 16px !important;
                     font-size: 12px;
-                    font-weight: bold;
+                    
                     color: rgb(14, 13, 13);
                   "
-                  ><b>{{request.user.first_name}} {{request.user.last_name}}</b>
-                  <b>{{request.user.email}}</b>
+                  ><b style="font-size: 14px;">{{request.user.first_name}} {{request.user.last_name}}</b>
+                  <a style="font-size: 12px;">{{request.user.email}}</a>
                 </span>
               </div>
+              <div class="dropdown-divider"></div>
               
-              {%if user.is_admin%}
-              <div class="lnk">
-                <a href="{%url 'sdashboard'%}" style="text-decoration: none"
-                  >Dashboard</a
+             <div class="lnk">
+                <a class="dropdown-item" href="{%url 'cart'%}" style="text-decoration: none"
+                  >My Cart</a
                 >
-                <a href="{%url 'sprofile'%}">Profile</a>
-                <a href="{%url 'scourses'%}">My Courses</a>
-              </div>
-              {%else%}
-              <div class="lnk" style="text-decoration: none; color: black">
-               
-                <a href="{%url 'tprofile' %}"
-                  > Profile</a
+                <a class="dropdown-item" href="{%url 'wishlist'%}" style="text-decoration: none"
+                  >My wishlist</a
                 >
-                 
-                <a href="{%url 'tutorcourses' %}">My Courses</a>
-                <a href="{%url 'announcements' %}">Annoucements</a>
-                <a href="{%url 'tpswdchange' %}"
-                  > Settings</a
-                >
-              </div>
-              {%endif%}
-              
-              <div class="lnk" style="text-decoration: none; color: black; border: none;">
-                <a href="{%url 'logout' %}">Logout</a>
+                <a class="dropdown-item" href="{%url 'sprofile'%}">Profile</a>
+                <a class="dropdown-item" href="{%url 'learnings'%}">My Learnings</a>
+              <a class="dropdown-item" href="{%url 'tutorcourses'%}">Tutor Dashboard</a>
+           
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{%url 'messages'%}">Messages</a>
+              <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="{%url 'tpswdchange'%}">Account Settings</a>
+              <div class="dropdown-divider"></div>
+            
+                <a class="dropdown-item" href="{%url 'logout' %}">Logout</a>
               </div>
             </div>
           </div>
@@ -413,9 +498,12 @@ header button:hover {
       </div>
     </header>
 
-<div class="sidebar">
-  <div class="sidenav" >
-    <div class="lnk" style="text-decoration: none; color:white; font-weight: bold; padding-top: 20px;">
+<div class="sidebar animate__animated animate__slideInLeft">
+  <div class="circ" id="cl">
+    X
+  </div>
+  <div class="sidenav animate__animated animate__slideInRight" >
+    <div class="lnnk" style="text-decoration: none; color:white; font-weight: bold !important; padding-top: 20px; font-size: 20px;">
       <i class="fa fa-arrow-left fa-2x" id="csn"></i>
       {%for cats in cat %}
                 <a href="{%url 'catg' cats.slug %} " style="color: white;"
@@ -425,15 +513,33 @@ header button:hover {
               </div>
             
   </div>
-   <div class="lnk" style="text-decoration: none; color: black; font-weight: bold;">
+   <div class="lnnk" style="text-decoration: none; color: black; font-weight: bold;">
                 <a href="{%url 'home' %}"
-                  ><i class="fa fa-home"></i> Home</a
+                  > Home</a
                 >
                 <a href="{%url 'courses' %}"
-                  ><i class="fa fa-user"></i> Courses</a
+                  >Courses</a
                 >
                 <a style="cursor: pointer;" id="sn">Categories</a>
-                <a href="{%url 'announcements' %}">Annoucements</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{%url 'cart'%}" style="text-decoration: none"
+                  >My Cart</a
+                >
+                <a class="dropdown-item" href="{%url 'wishlist'%}" style="text-decoration: none"
+                  >My wishlist</a
+                >
+                <a class="dropdown-item" href="{%url 'sprofile'%}">Profile</a>
+                <a class="dropdown-item" href="{%url 'learnings'%}">My Learnings</a>
+                <a class="dropdown-item" href="{%url 'tutorcourses'%}">Tutor Dashboard</a>
+           
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{%url 'messages'%}">Messages</a>
+              <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="{%url 'tpswdchange'%}">Account Settings</a>
+              <div class="dropdown-divider"></div>
+            
+                <a class="dropdown-item" href="{%url 'logout' %}">Logout</a>
+              </div>
               </div>
 
 

@@ -60,3 +60,18 @@ h2 {
   border: none;
   outline: none;
 }
+.cart h2{
+  padding: 0px;
+}
+h2{
+  padding: 30px 110px; font-size: 30px
+}
+@media (max-width: 768px) {
+  .cart{
+    flex-direction: column;
+    padding: 20px;
+  }
+  h2{
+    padding: 20px;
+  }
+}
